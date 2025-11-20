@@ -1,0 +1,1173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario>
+    <library></library>
+    <loggingTypes/>
+    <terminationConditions/>
+    <observers>
+        <observer>
+            <observedValues>
+                <simulationObjectUUID>7500ffb4-33d3-4fb3-800c-b6fb9b1388a5</simulationObjectUUID>
+                <simulationAttributeUUID>e9b9d3aa-d3e4-4c7e-94be-942446473b39</simulationAttributeUUID>
+            </observedValues>
+            <observedValues>
+                <simulationObjectUUID>7500ffb4-33d3-4fb3-800c-b6fb9b1388a5</simulationObjectUUID>
+                <simulationAttributeUUID>84772dbe-4d0a-491d-a130-3a7b9ed345f4</simulationAttributeUUID>
+            </observedValues>
+            <observedValues>
+                <simulationObjectUUID>7500ffb4-33d3-4fb3-800c-b6fb9b1388a5</simulationObjectUUID>
+                <simulationAttributeUUID>d3d8f0b2-eeb8-4a47-aaee-86dd7c78ea41</simulationAttributeUUID>
+            </observedValues>
+            <observedValues>
+                <simulationObjectUUID>e4c3cdb5-bb0d-466c-9773-2cc211daf883</simulationObjectUUID>
+                <simulationAttributeUUID>0471bd1a-d60a-436d-9ed9-4823baf73e8f</simulationAttributeUUID>
+            </observedValues>
+            <observedValues>
+                <simulationObjectUUID>e4c3cdb5-bb0d-466c-9773-2cc211daf883</simulationObjectUUID>
+                <simulationAttributeUUID>402e5210-6c70-4a92-96f5-20f7f436b0d4</simulationAttributeUUID>
+            </observedValues>
+            <observedValues>
+                <simulationObjectUUID>e4c3cdb5-bb0d-466c-9773-2cc211daf883</simulationObjectUUID>
+                <simulationAttributeUUID>886c16a4-bd6a-4c4e-85e6-13cd8f0e1820</simulationAttributeUUID>
+            </observedValues>
+            <timeStepSize>
+                <id>de654cfa-6fd4-4f64-8cf6-029b87baf8e3</id>
+                <attributeType>SINGLE</attributeType>
+                <unit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="noUnit">
+                    <abbreviation>nau</abbreviation>
+                    <name>no unit</name>
+                    <unitToBase>1.0</unitToBase>
+                </unit>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.0</value>
+                <name>updateTimeInterval</name>
+                <dataType>java.lang.Double</dataType>
+                <publish>false</publish>
+                <subscribe>false</subscribe>
+            </timeStepSize>
+            <observerWebSocketConfig>
+                <address>duemmer.Informatik.Uni-Oldenburg.DE</address>
+                <port>3193</port>
+            </observerWebSocketConfig>
+            <id>8f7eaf11-7fa1-4bbf-9e6c-d2e6bd05b7e4</id>
+            <loggingTypes/>
+        </observer>
+    </observers>
+    <simulationIterations>100</simulationIterations>
+    <simulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="containerShip">
+        <id>7500ffb4-33d3-4fb3-800c-b6fb9b1388a5</id>
+        <physical>
+            <id>f6a9ab67-09ef-4215-90ce-dc1de6dea74a</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">true</value>
+            <name>physical</name>
+            <dataType>java.lang.Boolean</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.physical</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </physical>
+        <position>
+            <id>e9b9d3aa-d3e4-4c7e-94be-942446473b39</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>7b5928ea-8d08-4aaa-ac39-d1ac8c84f5ba</id>
+                <latitude>
+                    <id>a69fad04-0f5a-4446-b350-98991e33d81b</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Position.latitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>48f81739-9aef-42ff-ab9f-56c091e68967</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Position.longitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>a97962d4-3f4e-4b06-91ad-320b1d90b243</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Position.altitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>position</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.Position</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </position>
+        <rotation>
+            <id>d3d8f0b2-eeb8-4a47-aaee-86dd7c78ea41</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">180.0</value>
+            <name>rotation</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.rotation</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </rotation>
+        <limitations>
+            <restriction>
+                <id>9ab10902-61da-4dbc-be32-918ff0c6cad2</id>
+                <restrictedParameter>rammedOtherShip</restrictedParameter>
+                <numericalRestrictionType>NOTNUMERICAL</numericalRestrictionType>
+                <value>
+                    <id>97f05b63-b5df-4b52-a64f-40c4996bfc96</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">true</value>
+                    <name>restVal</name>
+                    <dataType>java.lang.Boolean</dataType>
+                    <publish>true</publish>
+                    <subscribe>true</subscribe>
+                </value>
+                <formString>POINT (0 0)</formString>
+            </restriction>
+            <restriction>
+                <id>12dcedd6-011c-4d95-8814-471b6aeb653f</id>
+                <restrictedParameter>xCoord</restrictedParameter>
+                <numericalRestrictionType>EXACT</numericalRestrictionType>
+                <value>
+                    <id>fe762606-b1e2-468b-82d4-e7b4b9714006</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="rotationUnit">
+                        <abbreviation>°</abbreviation>
+                        <name>degree</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">32</value>
+                    <name>restVal</name>
+                    <dataType>java.lang.Integer</dataType>
+                    <publish>true</publish>
+                    <subscribe>true</subscribe>
+                </value>
+                <formString>POINT (0 0)</formString>
+            </restriction>
+            <restriction>
+                <id>deb748ba-15f1-4b58-a901-30cc6100f5af</id>
+                <restrictedParameter>yCoord</restrictedParameter>
+                <numericalRestrictionType>EXACT</numericalRestrictionType>
+                <value>
+                    <id>8b5faff5-2aa8-4563-8e42-62768dd48c69</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="rotationUnit">
+                        <abbreviation>°</abbreviation>
+                        <name>degree</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">48</value>
+                    <name>restVal</name>
+                    <dataType>java.lang.Integer</dataType>
+                    <publish>true</publish>
+                    <subscribe>true</subscribe>
+                </value>
+                <formString>POINT (0 0)</formString>
+            </restriction>
+        </limitations>
+        <componentList>
+            <id>28a4be88-3862-45ec-8f02-c6bff447171c</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="componentList">
+                <component>
+                    <id>1169ba11-ab4c-4ba4-beea-f264a18039f5</id>
+                    <root>true</root>
+                    <subComponents>
+                        <subComponent xsi:type="gear">
+                            <id>d19b1311-682d-4c4d-9974-d9d0b5f364f2</id>
+                            <root>false</root>
+                            <superComponent>1169ba11-ab4c-4ba4-beea-f264a18039f5</superComponent>
+                            <subComponents/>
+                            <changeableAttributeIDs/>
+                            <publish>false</publish>
+                            <subscribe>false</subscribe>
+                        </subComponent>
+                        <subComponent xsi:type="driveShaft">
+                            <id>c5cccbc0-ffdd-4064-ba98-cd312ff96124</id>
+                            <root>false</root>
+                            <superComponent>1169ba11-ab4c-4ba4-beea-f264a18039f5</superComponent>
+                            <subComponents/>
+                            <changeableAttributeIDs/>
+                            <publish>false</publish>
+                            <subscribe>false</subscribe>
+                            <shaftLength>
+<id>8beabdf3-1438-4295-a55e-a7f1ffc5aeea</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">32.58</value>
+<name>shaftLength</name>
+<dataType>java.lang.Double</dataType>
+<fomClassString>HLAobjectRoot.ContainerShip.Components.Component.shaftLength</fomClassString>
+<publish>true</publish>
+<subscribe>false</subscribe>
+                            </shaftLength>
+                        </subComponent>
+                    </subComponents>
+                    <changeableAttributeIDs/>
+                    <publish>false</publish>
+                    <subscribe>false</subscribe>
+                </component>
+                <component xsi:type="humiditySensor">
+                    <id>b1afddef-b5be-4ee8-98b1-305e40979b33</id>
+                    <root>true</root>
+                    <subComponents/>
+                    <changeableAttributeIDs/>
+                    <publish>false</publish>
+                    <subscribe>false</subscribe>
+                </component>
+                <component xsi:type="steeringSystem">
+                    <id>55301b4f-731a-4db5-9cd1-3b4a55a98bb3</id>
+                    <root>false</root>
+                    <subComponents/>
+                    <changeableAttributeIDs>
+                        <changeableAttributeIDs>e9b9d3aa-d3e4-4c7e-94be-942446473b39</changeableAttributeIDs>
+                    </changeableAttributeIDs>
+                    <attributeID>e9b9d3aa-d3e4-4c7e-94be-942446473b39</attributeID>
+                    <publish>false</publish>
+                    <subscribe>false</subscribe>
+                    <behaviour>
+                        <id>f2c662b0-0dc5-4c97-973c-5c446754ea82</id>
+                        <isSystemUnderTest>false</isSystemUnderTest>
+                        <behaviourName>
+                            <id>83a6311b-cdf5-478a-af0e-c334e19cd548</id>
+                            <attributeType>SINGLE</attributeType>
+                            <unit xsi:type="noUnit">
+<abbreviation>nau</abbreviation>
+<name>no unit</name>
+<unitToBase>1.0</unitToBase>
+                            </unit>
+                            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">ApplyPositionBehaviour</value>
+                            <name>ApplyPositionBehaviour</name>
+                            <dataType>java.lang.String</dataType>
+                            <publish>false</publish>
+                            <subscribe>false</subscribe>
+                        </behaviourName>
+                        <goals/>
+                        <systemUnderTestConfig>
+                            <address>localhost</address>
+                            <port>3002</port>
+                            <websocket>true</websocket>
+                        </systemUnderTestConfig>
+                    </behaviour>
+                </component>
+            </value>
+            <name>components</name>
+            <dataType>library.model.simulation.ComponentList</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </componentList>
+        <formString>POINT (0 0)</formString>
+        <timeStepSize>
+            <id>cff3c660-20ae-4eed-b42f-7b352467cbc1</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>updateTimeInterval</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.timeStepSize</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </timeStepSize>
+        <assignedDomain>
+            <id>a15d4dd0-1fbd-462f-a3f5-ce125f3e08ca</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="possibleDomains">MARITIME</value>
+            <name>assignedDomain</name>
+            <dataType>library.model.traffic.PossibleDomains</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.assignedDomain</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </assignedDomain>
+        <speed>
+            <id>7b0191ff-cf04-4b7c-96bd-14d915128902</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="speedUnit">
+                <abbreviation>kn</abbreviation>
+                <name>knots</name>
+                <unitToBase>0.5144444444444445</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">300.0</value>
+            <name>speed</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.speed</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </speed>
+        <origin>
+            <id>889c42a4-096d-483b-84ac-6186086f88ff</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>5130ab15-ab15-4959-b5d6-f9d0d6f08258</id>
+                <latitude>
+                    <id>21ee6b2f-3780-49a8-a590-e05b33f2c38c</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Origin.latitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>b851c576-bb1c-4873-8ceb-ced7675eef44</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Origin.longitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>98088488-d0b2-4a68-bc5e-220c5e9b721b</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Origin.altitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>origin</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.Origin</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </origin>
+        <acceleration>
+            <id>cf48fa33-d0b4-4584-bad6-06c7a041553b</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="accelerationUnit">
+                <abbreviation>m/s^2</abbreviation>
+                <name>meters per second squared</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">25.0</value>
+            <name>acceleration</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.acceleration</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </acceleration>
+        <behaviour>
+            <id>399f4612-5754-4cfc-9534-213e5f4250cd</id>
+            <isSystemUnderTest>false</isSystemUnderTest>
+            <behaviourName>
+                <id>1a6b2978-cf86-466c-9b10-73474681eb18</id>
+                <attributeType>SINGLE</attributeType>
+                <unit xsi:type="noUnit">
+                    <abbreviation>nau</abbreviation>
+                    <name>no unit</name>
+                    <unitToBase>1.0</unitToBase>
+                </unit>
+                <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">ConstantSpeedBehaviour</value>
+                <name>ConstantSpeedBehaviour</name>
+                <dataType>java.lang.String</dataType>
+                <publish>false</publish>
+                <subscribe>false</subscribe>
+            </behaviourName>
+            <goals/>
+            <systemUnderTestConfig>
+                <address>localhost</address>
+                <port>3002</port>
+                <websocket>true</websocket>
+            </systemUnderTestConfig>
+        </behaviour>
+        <length>
+            <id>d7d9a3d4-e0b5-4e32-b194-e64b8dafd3e4</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>length</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.length</fomClassString>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </length>
+        <weight>
+            <id>72e07508-1627-439f-a970-8fc5b74f4569</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">112.9</value>
+            <name>weight</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.weight</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </weight>
+        <width>
+            <id>edba6587-e5b6-4c9a-af99-fe68bb958298</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>width</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.width</fomClassString>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </width>
+        <course>
+            <id>730b8eac-3d03-4e02-b8b0-4086c410c591</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">233.4</value>
+            <name>course</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.course</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </course>
+        <draught>
+            <id>fec1f0ff-2ce3-4a1e-9cab-0fec41825d41</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">12.6</value>
+            <name>draught</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.draught</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </draught>
+        <homeHarbour>
+            <id>d654907c-3772-4a78-a8ce-75289f0e14e6</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Hamburch</value>
+            <name>homeHarbour</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.homeHarbour</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </homeHarbour>
+        <vesselName>
+            <id>84772dbe-4d0a-491d-a130-3a7b9ed345f4</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">SS Hope</value>
+            <name>vesselName</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.vesselName</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </vesselName>
+        <flag>
+            <id>2d211b28-e761-4461-8c6a-41a57b61f520</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Belarus</value>
+            <name>flag</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.flag</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </flag>
+        <imo>
+            <id>71240293-d3e6-4d3f-b353-6fe61562d40a</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">12432344654365</value>
+            <name>imo</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.imo</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </imo>
+        <mmsi>
+            <id>49f9d405-1aff-481b-bde6-0b6110fe2c2d</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">ferwdsgdsv</value>
+            <name>mmsi</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.mmsi</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </mmsi>
+        <callsign>
+            <id>54a088a9-d70f-4a16-9207-1233e6044b6e</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Black Hawk</value>
+            <name>callsign</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.callsign</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </callsign>
+        <loadCapacity>
+            <id>2022b1bf-ef7f-4564-872c-9036008fbb8a</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.5</value>
+            <name>loadCapacity</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.loadCapacity</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </loadCapacity>
+        <containerCapacity>
+            <id>9af00140-b5e7-4166-aa67-ddd0403a7ac1</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">5</value>
+            <name>containerCapacity</name>
+            <dataType>java.lang.Integer</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.containerCapacity</fomClassString>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </containerCapacity>
+        <emergencyDeclared>
+            <id>908efb6b-f77e-41c5-ae8a-ed773698e49f</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">false</value>
+            <name>emergencyDeclared</name>
+            <dataType>java.lang.Boolean</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.emergencyDeclared</fomClassString>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </emergencyDeclared>
+    </simulationObject>
+    <simulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="containerShip">
+        <id>e4c3cdb5-bb0d-466c-9773-2cc211daf883</id>
+        <physical>
+            <id>589ee099-dd3a-4261-81fb-1e902d84587d</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">true</value>
+            <name>physical</name>
+            <dataType>java.lang.Boolean</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.physical</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </physical>
+        <position>
+            <id>0471bd1a-d60a-436d-9ed9-4823baf73e8f</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>cc6ee2be-bd6e-402c-9f60-826f365fb083</id>
+                <latitude>
+                    <id>48b91f1b-433d-4853-9e33-67f2670457f0</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">5.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Position.latitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>b2656e63-60e6-472e-9a03-6ee364b69a70</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Position.longitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>true</subscribe>
+                </longitude>
+                <altitude>
+                    <id>4f5ae026-5dd9-4843-a54b-1b89153b62ee</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Position.altitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>position</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.Position</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </position>
+        <rotation>
+            <id>886c16a4-bd6a-4c4e-85e6-13cd8f0e1820</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">180.0</value>
+            <name>rotation</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.rotation</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </rotation>
+        <limitations/>
+        <componentList>
+            <id>3f9dbc0c-4f20-458c-bc3e-d25e4d33b939</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="componentList">
+                <component xsi:type="steeringSystem">
+                    <id>2e34a070-1d19-4d01-8a9d-f46d22fcb30f</id>
+                    <root>false</root>
+                    <subComponents/>
+                    <changeableAttributeIDs>
+                        <changeableAttributeIDs>0471bd1a-d60a-436d-9ed9-4823baf73e8f</changeableAttributeIDs>
+                    </changeableAttributeIDs>
+                    <attributeID>0471bd1a-d60a-436d-9ed9-4823baf73e8f</attributeID>
+                    <publish>false</publish>
+                    <subscribe>false</subscribe>
+                    <behaviour>
+                        <id>0aaa34eb-3eba-4b80-88dc-7c860cfc5c2b</id>
+                        <isSystemUnderTest>false</isSystemUnderTest>
+                        <behaviourName>
+                            <id>4857945d-718b-4b25-ac0e-be394b766f2f</id>
+                            <attributeType>SINGLE</attributeType>
+                            <unit xsi:type="noUnit">
+<abbreviation>nau</abbreviation>
+<name>no unit</name>
+<unitToBase>1.0</unitToBase>
+                            </unit>
+                            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">ApplyPositionBehaviour</value>
+                            <name>ApplyPositionBehaviour</name>
+                            <dataType>java.lang.String</dataType>
+                            <publish>false</publish>
+                            <subscribe>false</subscribe>
+                        </behaviourName>
+                        <goals/>
+                        <systemUnderTestConfig>
+                            <address>localhost</address>
+                            <port>3002</port>
+                            <websocket>true</websocket>
+                        </systemUnderTestConfig>
+                    </behaviour>
+                </component>
+            </value>
+            <name>components</name>
+            <dataType>library.model.simulation.ComponentList</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </componentList>
+        <formString>POINT (0 0)</formString>
+        <timeStepSize>
+            <id>c79e42a3-2411-478f-b894-a5dd09d821c7</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.0</value>
+            <name>updateTimeInterval</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.timeStepSize</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </timeStepSize>
+        <assignedDomain>
+            <id>a0e3de67-edfd-4831-815c-0ad6c3fe8c47</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="possibleDomains">MARITIME</value>
+            <name>assignedDomain</name>
+            <dataType>library.model.traffic.PossibleDomains</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.assignedDomain</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </assignedDomain>
+        <speed>
+            <id>8705d6c1-58c7-48c6-a439-6b6eb7a79ec7</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="speedUnit">
+                <abbreviation>kn</abbreviation>
+                <name>knots</name>
+                <unitToBase>0.5144444444444445</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>speed</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.speed</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </speed>
+        <origin>
+            <id>49bcd171-e0a8-499b-8f9e-5c8d8d307762</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>d9e4b523-0ddb-47b0-bc7c-221a2cdcb218</id>
+                <latitude>
+                    <id>5423651b-f032-4899-9edb-3bffbb0641eb</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Origin.latitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>74d7c6f1-571c-4f3e-a934-ccd09604f398</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Origin.longitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>a31477f3-b989-4494-a1a3-2e2f5ebaadb9</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <fomClassString>HLAobjectRoot.ContainerShip.Origin.altitude</fomClassString>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>origin</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.Origin</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </origin>
+        <acceleration>
+            <id>1f233392-eae0-404d-9a46-fd542c298b5b</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="accelerationUnit">
+                <abbreviation>m/s^2</abbreviation>
+                <name>meters per second squared</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">25.0</value>
+            <name>acceleration</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.acceleration</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </acceleration>
+        <behaviour>
+            <id>86790f73-98cc-4ea9-9a0e-556448c4bf54</id>
+            <isSystemUnderTest>false</isSystemUnderTest>
+            <behaviourName>
+                <id>5bcde44c-c7d4-499a-9bb6-f4f41c006272</id>
+                <attributeType>SINGLE</attributeType>
+                <unit xsi:type="noUnit">
+                    <abbreviation>nau</abbreviation>
+                    <name>no unit</name>
+                    <unitToBase>1.0</unitToBase>
+                </unit>
+                <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">ConstantSpeedBehaviour</value>
+                <name>ConstantSpeedBehaviour</name>
+                <dataType>java.lang.String</dataType>
+                <publish>false</publish>
+                <subscribe>false</subscribe>
+            </behaviourName>
+            <goals/>
+            <systemUnderTestConfig>
+                <address>localhost</address>
+                <port>3002</port>
+                <websocket>true</websocket>
+            </systemUnderTestConfig>
+        </behaviour>
+        <length>
+            <id>916fb7f0-d681-4abb-b520-bdbf3bcc1a0d</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>length</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.length</fomClassString>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </length>
+        <weight>
+            <id>c8e8db31-4d5f-4029-8b0b-3aaefb713f48</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">112.9</value>
+            <name>weight</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.weight</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </weight>
+        <width>
+            <id>8c85bfbd-0ac9-4378-b89b-f648fbb28c90</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>width</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.width</fomClassString>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </width>
+        <course>
+            <id>e3e5c7ca-f2d7-441d-a019-55189103f7aa</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">233.3</value>
+            <name>course</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.course</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </course>
+        <draught>
+            <id>cb06685a-3d4c-4c92-9eba-a9208410406c</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">22.6</value>
+            <name>draught</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.draught</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </draught>
+        <homeHarbour>
+            <id>2392de5f-e430-4c1d-b744-831fe2ed6989</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Hamburch</value>
+            <name>homeHarbour</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.homeHarbour</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </homeHarbour>
+        <vesselName>
+            <id>402e5210-6c70-4a92-96f5-20f7f436b0d4</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">SS No Hope</value>
+            <name>vesselName</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.vesselName</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </vesselName>
+        <flag>
+            <id>0d9a8ad2-a0b4-43a5-999d-fff6d91667d7</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Galicia</value>
+            <name>flag</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.flag</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </flag>
+        <imo>
+            <id>76c44cf4-a009-48cc-b852-fd64cd1978ab</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">12432542344654365</value>
+            <name>imo</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.imo</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </imo>
+        <mmsi>
+            <id>1cc9d778-831d-443d-8b26-a2eb3c23d4c5</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">ferwddsasgdsv</value>
+            <name>mmsi</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.mmsi</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </mmsi>
+        <callsign>
+            <id>d37ea2ac-0cf6-423d-8559-b84f71fc00b9</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Black Hawk Down</value>
+            <name>callsign</name>
+            <dataType>java.lang.String</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.callsign</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </callsign>
+        <loadCapacity>
+            <id>79bc3b88-5f1b-4b95-9fbd-c0c59435aedc</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">5.5</value>
+            <name>loadCapacity</name>
+            <dataType>java.lang.Double</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.loadCapacity</fomClassString>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </loadCapacity>
+        <containerCapacity>
+            <id>d98ed433-ff69-4d34-b08b-660c51010b5f</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">4</value>
+            <name>containerCapacity</name>
+            <dataType>java.lang.Integer</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.containerCapacity</fomClassString>
+            <publish>false</publish>
+            <subscribe>true</subscribe>
+        </containerCapacity>
+        <emergencyDeclared>
+            <id>6d4150c7-387b-431f-87cb-4985c6455b07</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">false</value>
+            <name>emergencyDeclared</name>
+            <dataType>java.lang.Boolean</dataType>
+            <fomClassString>HLAobjectRoot.ContainerShip.emergencyDeclared</fomClassString>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </emergencyDeclared>
+    </simulationObject>
+    <simulationTime>-1</simulationTime>
+</Scenario>

@@ -1,0 +1,33 @@
+package library.model.maritime;
+
+import library.model.simulation.Position;
+import library.model.simulation.SimulationProperty;
+import library.model.traffic.Obstacle;
+import org.locationtech.jts.geom.Geometry;
+
+import javax.xml.bind.annotation.XmlRootElement;
+
+/**
+ * A Cliff Obstacle
+ */
+@XmlRootElement
+public class Cliff extends Obstacle {
+
+    public Cliff() {
+
+    }
+
+    public Cliff(boolean physical,
+                 Position position,
+                 Geometry form,
+                 double rotation) {
+        super(physical, position, form, rotation);
+    }
+
+    public Cliff(SimulationProperty<Boolean> physical,
+                 SimulationProperty<Position> position,
+                 SimulationProperty<Geometry> form,
+                 SimulationProperty<Double> rotation) {
+        super(physical, position, form, rotation);
+    }
+}

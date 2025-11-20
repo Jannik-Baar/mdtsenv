@@ -1,0 +1,1710 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Scenario>
+    <library></library>
+    <loggingTypes>
+        <loggingTypes>CONSOLE</loggingTypes>
+    </loggingTypes>
+    <terminationConditions>
+        <terminationCondition>
+            <condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="compareAttributeCondition">
+                <compareWithValue>true</compareWithValue>
+                <comparator>LESS</comparator>
+                <attrIdToSimObjMap/>
+                <attribute>
+                    <id>a3533b45-7cbb-440b-b80b-9e97ffce0c6b</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">200</value>
+                    <name>TestAttribute1</name>
+                    <dataType>java.lang.Integer</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </attribute>
+                <compareValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">199</compareValue>
+            </condition>
+        </terminationCondition>
+        <terminationCondition>
+            <condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="compareAttributeCondition">
+                <compareWithValue>false</compareWithValue>
+                <comparator>GREATER</comparator>
+                <attrIdToSimObjMap/>
+                <attribute>
+                    <id>36d2c753-dab7-4244-b857-357c61667e30</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">201</value>
+                    <name>TestAttribute2</name>
+                    <dataType>java.lang.Integer</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </attribute>
+                <compareAttribute>
+                    <id>63f09563-5966-4953-9aca-db6b6cc49377</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:int">200</value>
+                    <name>TestAttribute3</name>
+                    <dataType>java.lang.Integer</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </compareAttribute>
+            </condition>
+        </terminationCondition>
+        <terminationCondition>
+            <condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="compareAttributeCondition">
+                <compareWithValue>true</compareWithValue>
+                <comparator>LESS_OR_EQUAL</comparator>
+                <attrIdToSimObjMap>
+                    <entry>
+                        <key>fe6f4315-cd3d-4177-bbe5-ada6dd0488d6</key>
+                        <value xsi:type="vessel">
+                            <id>e470338d-771e-4527-859c-997d22b4b92b</id>
+                            <physical>
+<id>049d5d35-4319-4d94-aa33-4477c59fc764</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">true</value>
+<name>physical</name>
+<dataType>java.lang.Boolean</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </physical>
+                            <position>
+<id>e9d29f6e-1ff6-4aa7-9461-4a092fe326d8</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xsi:type="position">
+    <id>63a631bc-36c1-456a-8c26-b3b555f7f3c1</id>
+    <latitude>
+        <id>0fb4b53f-d797-4c92-b808-de0f07ab3275</id>
+        <attributeType>SINGLE</attributeType>
+        <unit xsi:type="noUnit">
+            <abbreviation>nau</abbreviation>
+            <name>no unit</name>
+            <unitToBase>1.0</unitToBase>
+        </unit>
+        <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+        <name>latitude</name>
+        <dataType>java.lang.Double</dataType>
+        <publish>true</publish>
+        <subscribe>false</subscribe>
+    </latitude>
+    <longitude>
+        <id>22fd5e77-12de-4987-a317-40b4d198cbc5</id>
+        <attributeType>SINGLE</attributeType>
+        <unit xsi:type="noUnit">
+            <abbreviation>nau</abbreviation>
+            <name>no unit</name>
+            <unitToBase>1.0</unitToBase>
+        </unit>
+        <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+        <name>longitude</name>
+        <dataType>java.lang.Double</dataType>
+        <publish>true</publish>
+        <subscribe>false</subscribe>
+    </longitude>
+    <altitude>
+        <id>e55fea8c-4a27-4cf3-a555-a2f8590a448a</id>
+        <attributeType>SINGLE</attributeType>
+        <unit xsi:type="distanceUnit">
+            <abbreviation>m</abbreviation>
+            <name>meter</name>
+            <unitToBase>1.0</unitToBase>
+        </unit>
+        <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+        <name>altitude</name>
+        <dataType>java.lang.Double</dataType>
+        <publish>true</publish>
+        <subscribe>false</subscribe>
+    </altitude>
+</value>
+<name>position</name>
+<dataType>library.model.simulation.Position</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </position>
+                            <rotation>
+<id>28d2e33d-3b54-43c0-b9eb-b966a605f9dd</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="rotationUnit">
+    <abbreviation>°</abbreviation>
+    <name>degree</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">90.0</value>
+<name>rotation</name>
+<dataType>java.lang.Double</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </rotation>
+                            <limitations/>
+                            <componentList>
+<id>96045a69-9d6d-45bd-b1f3-3cf3dd6ee94d</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xsi:type="componentList"/>
+<name>components</name>
+<dataType>library.model.simulation.ComponentList</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </componentList>
+                            <formString>POINT (0 0)</formString>
+                            <timeStepSize>
+<id>ed92416d-45b8-4c0b-907b-b86a3c527559</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.0</value>
+<name>updateTimeInterval</name>
+<dataType>java.lang.Double</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </timeStepSize>
+                            <assignedDomain>
+<id>9c0e8a93-0a0e-4462-a690-6c7b65ea9c7f</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xsi:type="possibleDomains">MARITIME</value>
+<name>assignedDomain</name>
+<dataType>library.model.traffic.PossibleDomains</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </assignedDomain>
+                            <speed>
+<id>fe6f4315-cd3d-4177-bbe5-ada6dd0488d6</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="speedUnit">
+    <abbreviation>kn</abbreviation>
+    <name>knots</name>
+    <unitToBase>0.5144444444444445</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+<name>speed</name>
+<dataType>java.lang.Double</dataType>
+<publish>true</publish>
+<subscribe>false</subscribe>
+                            </speed>
+                            <origin>
+<id>d441230c-42c7-4cfd-a815-1dc2d15f6776</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xsi:type="position">
+    <id>63a631bc-36c1-456a-8c26-b3b555f7f3c1</id>
+    <latitude>
+        <id>0fb4b53f-d797-4c92-b808-de0f07ab3275</id>
+        <attributeType>SINGLE</attributeType>
+        <unit xsi:type="noUnit">
+            <abbreviation>nau</abbreviation>
+            <name>no unit</name>
+            <unitToBase>1.0</unitToBase>
+        </unit>
+        <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+        <name>latitude</name>
+        <dataType>java.lang.Double</dataType>
+        <publish>true</publish>
+        <subscribe>false</subscribe>
+    </latitude>
+    <longitude>
+        <id>22fd5e77-12de-4987-a317-40b4d198cbc5</id>
+        <attributeType>SINGLE</attributeType>
+        <unit xsi:type="noUnit">
+            <abbreviation>nau</abbreviation>
+            <name>no unit</name>
+            <unitToBase>1.0</unitToBase>
+        </unit>
+        <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+        <name>longitude</name>
+        <dataType>java.lang.Double</dataType>
+        <publish>true</publish>
+        <subscribe>false</subscribe>
+    </longitude>
+    <altitude>
+        <id>e55fea8c-4a27-4cf3-a555-a2f8590a448a</id>
+        <attributeType>SINGLE</attributeType>
+        <unit xsi:type="distanceUnit">
+            <abbreviation>m</abbreviation>
+            <name>meter</name>
+            <unitToBase>1.0</unitToBase>
+        </unit>
+        <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+        <name>altitude</name>
+        <dataType>java.lang.Double</dataType>
+        <publish>true</publish>
+        <subscribe>false</subscribe>
+    </altitude>
+</value>
+<name>origin</name>
+<dataType>library.model.simulation.Position</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </origin>
+                            <acceleration>
+<id>d8c82836-8502-4f72-829c-9c49dc403f66</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="accelerationUnit">
+    <abbreviation>m/s^2</abbreviation>
+    <name>meters per second squared</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">25.0</value>
+<name>acceleration</name>
+<dataType>java.lang.Double</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </acceleration>
+                            <behaviour xsi:type="constantSpeedBehaviour">
+<id>36990d9e-c4e3-431b-99eb-9887c7ac3808</id>
+<goals/>
+<isSystemUnderTest>false</isSystemUnderTest>
+<systemUnderTestConfig>
+    <address>localhost</address>
+    <port>3002</port>
+    <websocket>true</websocket>
+</systemUnderTestConfig>
+                            </behaviour>
+                            <length>
+<id>c06248f1-7b63-4c36-9680-3cf6102a88e1</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="distanceUnit">
+    <abbreviation>m</abbreviation>
+    <name>meter</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+<name>length</name>
+<dataType>java.lang.Double</dataType>
+<publish>true</publish>
+<subscribe>false</subscribe>
+                            </length>
+                            <weight>
+<id>8ea2823c-2541-4bb1-9679-b8d32d30a687</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="weightUnit">
+    <abbreviation>T</abbreviation>
+    <name>ton</name>
+    <unitToBase>1000000.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">112.9</value>
+<name>weight</name>
+<dataType>java.lang.Double</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </weight>
+                            <width>
+<id>28e5d24d-ff4d-4047-8194-d283df054463</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="distanceUnit">
+    <abbreviation>m</abbreviation>
+    <name>meter</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+<name>width</name>
+<dataType>java.lang.Double</dataType>
+<publish>true</publish>
+<subscribe>false</subscribe>
+                            </width>
+                            <course>
+<id>86394a33-7851-4f08-8d77-561369209324</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="rotationUnit">
+    <abbreviation>°</abbreviation>
+    <name>degree</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">180.4</value>
+<name>course</name>
+<dataType>java.lang.Double</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </course>
+                            <draught>
+<id>704d108e-287b-4086-91bc-463ac3f4663d</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="distanceUnit">
+    <abbreviation>m</abbreviation>
+    <name>meter</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">12.6</value>
+<name>draught</name>
+<dataType>java.lang.Double</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </draught>
+                            <homeHarbour>
+<id>694216b8-3883-4832-9888-2e96cf7b0906</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Hamburch</value>
+<name>homeHarbour</name>
+<dataType>java.lang.String</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </homeHarbour>
+                            <vesselName>
+<id>bbb5f94b-507e-406b-a87c-b0d38f2e9009</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">SS Hope</value>
+<name>vesselName</name>
+<dataType>java.lang.String</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </vesselName>
+                            <flag>
+<id>eab26572-068e-48f5-81c1-16b290b34303</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Belarus</value>
+<name>flag</name>
+<dataType>java.lang.String</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </flag>
+                            <imo>
+<id>7f5379d1-0d64-4871-ad5a-4e12f658f80a</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">dsfdfsdfa</value>
+<name>imo</name>
+<dataType>java.lang.String</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </imo>
+                            <mmsi>
+<id>bc1c68af-4ab7-49bb-ba4b-bb3037a11697</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">fe34243232rwdsgdsr</value>
+<name>mmsi</name>
+<dataType>java.lang.String</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </mmsi>
+                            <callsign>
+<id>3471893e-5711-4f48-a107-210daa350f01</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="noUnit">
+    <abbreviation>nau</abbreviation>
+    <name>no unit</name>
+    <unitToBase>1.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Generic</value>
+<name>callsign</name>
+<dataType>java.lang.String</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </callsign>
+                            <loadCapacity>
+<id>f20afb7a-36a4-4cf6-a47c-0dd85d05c4fb</id>
+<attributeType>SINGLE</attributeType>
+<unit xsi:type="weightUnit">
+    <abbreviation>T</abbreviation>
+    <name>ton</name>
+    <unitToBase>1000000.0</unitToBase>
+</unit>
+<value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.5</value>
+<name>loadCapacity</name>
+<dataType>java.lang.Double</dataType>
+<publish>false</publish>
+<subscribe>false</subscribe>
+                            </loadCapacity>
+                        </value>
+                    </entry>
+                </attrIdToSimObjMap>
+                <attribute>
+                    <id>fe6f4315-cd3d-4177-bbe5-ada6dd0488d6</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="speedUnit">
+                        <abbreviation>kn</abbreviation>
+                        <name>knots</name>
+                        <unitToBase>0.5144444444444445</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+                    <name>speed</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </attribute>
+                <compareValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">100.0</compareValue>
+            </condition>
+        </terminationCondition>
+    </terminationConditions>
+    <maxDuration>30000</maxDuration>
+    <observers>
+        <observer>
+            <observedValues>
+                <simulationObjectUUID>e470338d-771e-4527-859c-997d22b4b92b</simulationObjectUUID>
+                <simulationAttributeUUID>e55fea8c-4a27-4cf3-a555-a2f8590a448a</simulationAttributeUUID>
+            </observedValues>
+            <loggingTypes/>
+            <timeStepSize>
+                <id>d07cc000-6c32-47df-a6d2-4222db1de553</id>
+                <attributeType>SINGLE</attributeType>
+                <unit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="noUnit">
+                    <abbreviation>nau</abbreviation>
+                    <name>no unit</name>
+                    <unitToBase>1.0</unitToBase>
+                </unit>
+                <value xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.0</value>
+                <name>updateTimeInterval</name>
+                <dataType>java.lang.Double</dataType>
+                <publish>false</publish>
+                <subscribe>false</subscribe>
+            </timeStepSize>
+            <observerWebSocketConfig>
+                <address>localhost</address>
+                <port>1337</port>
+            </observerWebSocketConfig>
+            <id>12fa0e0e-e33a-4915-86c2-e8d347896851</id>
+        </observer>
+    </observers>
+    <simulationIterations>150</simulationIterations>
+    <simulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vessel">
+        <id>e470338d-771e-4527-859c-997d22b4b92b</id>
+        <physical>
+            <id>049d5d35-4319-4d94-aa33-4477c59fc764</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">true</value>
+            <name>physical</name>
+            <dataType>java.lang.Boolean</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </physical>
+        <position>
+            <id>e9d29f6e-1ff6-4aa7-9461-4a092fe326d8</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>63a631bc-36c1-456a-8c26-b3b555f7f3c1</id>
+                <latitude>
+                    <id>0fb4b53f-d797-4c92-b808-de0f07ab3275</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>22fd5e77-12de-4987-a317-40b4d198cbc5</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>e55fea8c-4a27-4cf3-a555-a2f8590a448a</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>position</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </position>
+        <rotation>
+            <id>28d2e33d-3b54-43c0-b9eb-b966a605f9dd</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">90.0</value>
+            <name>rotation</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </rotation>
+        <limitations/>
+        <componentList>
+            <id>96045a69-9d6d-45bd-b1f3-3cf3dd6ee94d</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="componentList"/>
+            <name>components</name>
+            <dataType>library.model.simulation.ComponentList</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </componentList>
+        <formString>POINT (0 0)</formString>
+        <timeStepSize>
+            <id>ed92416d-45b8-4c0b-907b-b86a3c527559</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.0</value>
+            <name>updateTimeInterval</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </timeStepSize>
+        <assignedDomain>
+            <id>9c0e8a93-0a0e-4462-a690-6c7b65ea9c7f</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="possibleDomains">MARITIME</value>
+            <name>assignedDomain</name>
+            <dataType>library.model.traffic.PossibleDomains</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </assignedDomain>
+        <speed>
+            <id>fe6f4315-cd3d-4177-bbe5-ada6dd0488d6</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="speedUnit">
+                <abbreviation>kn</abbreviation>
+                <name>knots</name>
+                <unitToBase>0.5144444444444445</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>speed</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </speed>
+        <origin>
+            <id>d441230c-42c7-4cfd-a815-1dc2d15f6776</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>63a631bc-36c1-456a-8c26-b3b555f7f3c1</id>
+                <latitude>
+                    <id>0fb4b53f-d797-4c92-b808-de0f07ab3275</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>22fd5e77-12de-4987-a317-40b4d198cbc5</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>e55fea8c-4a27-4cf3-a555-a2f8590a448a</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>origin</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </origin>
+        <acceleration>
+            <id>d8c82836-8502-4f72-829c-9c49dc403f66</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="accelerationUnit">
+                <abbreviation>m/s^2</abbreviation>
+                <name>meters per second squared</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">25.0</value>
+            <name>acceleration</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </acceleration>
+        <behaviour xsi:type="constantSpeedBehaviour">
+            <id>36990d9e-c4e3-431b-99eb-9887c7ac3808</id>
+            <goals/>
+            <isSystemUnderTest>false</isSystemUnderTest>
+            <systemUnderTestConfig>
+                <address>localhost</address>
+                <port>3002</port>
+                <websocket>true</websocket>
+            </systemUnderTestConfig>
+        </behaviour>
+        <length>
+            <id>c06248f1-7b63-4c36-9680-3cf6102a88e1</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>length</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </length>
+        <weight>
+            <id>8ea2823c-2541-4bb1-9679-b8d32d30a687</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">112.9</value>
+            <name>weight</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </weight>
+        <width>
+            <id>28e5d24d-ff4d-4047-8194-d283df054463</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>width</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </width>
+        <course>
+            <id>86394a33-7851-4f08-8d77-561369209324</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">180.4</value>
+            <name>course</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </course>
+        <draught>
+            <id>704d108e-287b-4086-91bc-463ac3f4663d</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">12.6</value>
+            <name>draught</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </draught>
+        <homeHarbour>
+            <id>694216b8-3883-4832-9888-2e96cf7b0906</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Hamburch</value>
+            <name>homeHarbour</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </homeHarbour>
+        <vesselName>
+            <id>bbb5f94b-507e-406b-a87c-b0d38f2e9009</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">SS Hope</value>
+            <name>vesselName</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </vesselName>
+        <flag>
+            <id>eab26572-068e-48f5-81c1-16b290b34303</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Belarus</value>
+            <name>flag</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </flag>
+        <imo>
+            <id>7f5379d1-0d64-4871-ad5a-4e12f658f80a</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">dsfdfsdfa</value>
+            <name>imo</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </imo>
+        <mmsi>
+            <id>bc1c68af-4ab7-49bb-ba4b-bb3037a11697</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">fe34243232rwdsgdsr</value>
+            <name>mmsi</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </mmsi>
+        <callsign>
+            <id>3471893e-5711-4f48-a107-210daa350f01</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Generic</value>
+            <name>callsign</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </callsign>
+        <loadCapacity>
+            <id>f20afb7a-36a4-4cf6-a47c-0dd85d05c4fb</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.5</value>
+            <name>loadCapacity</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </loadCapacity>
+    </simulationObject>
+    <simulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vessel">
+        <id>f5321980-3c8a-4baa-97a8-18bb40d06caa</id>
+        <physical>
+            <id>264dfa81-19d1-416e-865b-8260dbcfc30f</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">true</value>
+            <name>physical</name>
+            <dataType>java.lang.Boolean</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </physical>
+        <position>
+            <id>d9fa16d4-63dd-4ef9-84af-677a9b9f85ed</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>63a631bc-36c1-456a-8c26-b3b555f7f3c1</id>
+                <latitude>
+                    <id>0fb4b53f-d797-4c92-b808-de0f07ab3275</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>22fd5e77-12de-4987-a317-40b4d198cbc5</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>e55fea8c-4a27-4cf3-a555-a2f8590a448a</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>position</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </position>
+        <rotation>
+            <id>cb7af8bc-b326-49b3-aac3-0483c931a2c2</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">90.0</value>
+            <name>rotation</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </rotation>
+        <limitations/>
+        <componentList>
+            <id>ce6cc5cc-4af7-4577-b1d6-ac8d806255aa</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="componentList"/>
+            <name>components</name>
+            <dataType>library.model.simulation.ComponentList</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </componentList>
+        <formString>POINT (0 0)</formString>
+        <timeStepSize>
+            <id>621ce586-7317-4bff-ad88-8baa151119c6</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">3.0</value>
+            <name>updateTimeInterval</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </timeStepSize>
+        <assignedDomain>
+            <id>da5e9caa-0f0b-4dee-ab66-8a51f64d4bfa</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="possibleDomains">MARITIME</value>
+            <name>assignedDomain</name>
+            <dataType>library.model.traffic.PossibleDomains</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </assignedDomain>
+        <speed>
+            <id>56c6a560-d556-44ab-9959-dfed1b45409e</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="speedUnit">
+                <abbreviation>kn</abbreviation>
+                <name>knots</name>
+                <unitToBase>0.5144444444444445</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>speed</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </speed>
+        <origin>
+            <id>4d55926b-9cdc-41f3-9935-bf4076985175</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>63a631bc-36c1-456a-8c26-b3b555f7f3c1</id>
+                <latitude>
+                    <id>0fb4b53f-d797-4c92-b808-de0f07ab3275</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>22fd5e77-12de-4987-a317-40b4d198cbc5</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>e55fea8c-4a27-4cf3-a555-a2f8590a448a</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>origin</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </origin>
+        <acceleration>
+            <id>cb8f2bd5-1372-472b-a11f-f9bbd97b2e01</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="accelerationUnit">
+                <abbreviation>m/s^2</abbreviation>
+                <name>meters per second squared</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">25.0</value>
+            <name>acceleration</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </acceleration>
+        <behaviour xsi:type="constantSpeedBehaviour">
+            <id>79686197-c039-4879-b57b-41dea97b2682</id>
+            <goals/>
+            <isSystemUnderTest>false</isSystemUnderTest>
+            <systemUnderTestConfig>
+                <address>localhost</address>
+                <port>3002</port>
+                <websocket>true</websocket>
+            </systemUnderTestConfig>
+        </behaviour>
+        <length>
+            <id>017647c0-4da8-40a5-a04d-e27b15ed50d9</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>length</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </length>
+        <weight>
+            <id>484e11ba-63bb-43f6-929d-9370069962d2</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">112.9</value>
+            <name>weight</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </weight>
+        <width>
+            <id>505e1fb6-39fb-4c46-9735-a2d5d8be5fb9</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>width</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </width>
+        <course>
+            <id>e7de2423-2e26-45ab-a43a-8f478c3a4d37</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">180.4</value>
+            <name>course</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </course>
+        <draught>
+            <id>bbda515d-09aa-493d-b03a-130102403ac0</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">12.6</value>
+            <name>draught</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </draught>
+        <homeHarbour>
+            <id>3e99410e-f7db-4012-a5be-10ea6f483878</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Hamburch</value>
+            <name>homeHarbour</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </homeHarbour>
+        <vesselName>
+            <id>ba96d401-d8f5-4603-89da-b972272ce099</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">SS Nope</value>
+            <name>vesselName</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </vesselName>
+        <flag>
+            <id>adfae4f3-3810-49bf-b69c-d7611c2b23f8</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Belarus</value>
+            <name>flag</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </flag>
+        <imo>
+            <id>6be582e5-9cea-47d8-bac0-50534f1d3629</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">dsfdfsdfb</value>
+            <name>imo</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </imo>
+        <mmsi>
+            <id>87f3b845-e876-4c2c-9f31-1f45cd5c8162</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">fe34243232rwdsgdsm</value>
+            <name>mmsi</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </mmsi>
+        <callsign>
+            <id>9e2d2ec9-e0af-498f-922d-39925b9c82bd</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Generic</value>
+            <name>callsign</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </callsign>
+        <loadCapacity>
+            <id>1585d5d5-a26c-4681-98fc-ebb7057c8cd6</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.5</value>
+            <name>loadCapacity</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </loadCapacity>
+    </simulationObject>
+    <simulationObject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vessel">
+        <id>34f3cec6-a436-4bca-a8ab-a592412410a2</id>
+        <physical>
+            <id>3168f182-82b8-4016-854d-c6ccaccfdc5f</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:boolean">true</value>
+            <name>physical</name>
+            <dataType>java.lang.Boolean</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </physical>
+        <position>
+            <id>ba6ba46c-8ec9-469e-91b8-961cd393d4f0</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>63a631bc-36c1-456a-8c26-b3b555f7f3c1</id>
+                <latitude>
+                    <id>0fb4b53f-d797-4c92-b808-de0f07ab3275</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>22fd5e77-12de-4987-a317-40b4d198cbc5</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>e55fea8c-4a27-4cf3-a555-a2f8590a448a</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>position</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </position>
+        <rotation>
+            <id>a3a03a64-1b22-4228-b747-682961ea54b0</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">90.0</value>
+            <name>rotation</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </rotation>
+        <limitations/>
+        <componentList>
+            <id>5b73dfa0-264d-44bd-9d60-ef5c350fadf0</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="componentList"/>
+            <name>components</name>
+            <dataType>library.model.simulation.ComponentList</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </componentList>
+        <formString>POINT (0 0)</formString>
+        <timeStepSize>
+            <id>be4df6c7-af62-44a0-a19f-272e943b34e2</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>updateTimeInterval</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </timeStepSize>
+        <assignedDomain>
+            <id>cd6163f2-5e47-4969-b3b7-217dd0dbdc36</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="possibleDomains">MARITIME</value>
+            <name>assignedDomain</name>
+            <dataType>library.model.traffic.PossibleDomains</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </assignedDomain>
+        <speed>
+            <id>11070715-4d8e-4e93-aad9-b4301ec24fd8</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="speedUnit">
+                <abbreviation>kn</abbreviation>
+                <name>knots</name>
+                <unitToBase>0.5144444444444445</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>speed</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </speed>
+        <origin>
+            <id>553ee2c9-3433-4f00-ac8c-ed3a97758a8b</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xsi:type="position">
+                <id>63a631bc-36c1-456a-8c26-b3b555f7f3c1</id>
+                <latitude>
+                    <id>0fb4b53f-d797-4c92-b808-de0f07ab3275</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>latitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </latitude>
+                <longitude>
+                    <id>22fd5e77-12de-4987-a317-40b4d198cbc5</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="noUnit">
+                        <abbreviation>nau</abbreviation>
+                        <name>no unit</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>longitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </longitude>
+                <altitude>
+                    <id>e55fea8c-4a27-4cf3-a555-a2f8590a448a</id>
+                    <attributeType>SINGLE</attributeType>
+                    <unit xsi:type="distanceUnit">
+                        <abbreviation>m</abbreviation>
+                        <name>meter</name>
+                        <unitToBase>1.0</unitToBase>
+                    </unit>
+                    <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">0.0</value>
+                    <name>altitude</name>
+                    <dataType>java.lang.Double</dataType>
+                    <publish>true</publish>
+                    <subscribe>false</subscribe>
+                </altitude>
+            </value>
+            <name>origin</name>
+            <dataType>library.model.simulation.Position</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </origin>
+        <acceleration>
+            <id>693e609a-05b7-44dc-babe-f1a9da6f6f6e</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="accelerationUnit">
+                <abbreviation>m/s^2</abbreviation>
+                <name>meters per second squared</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">25.0</value>
+            <name>acceleration</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </acceleration>
+        <behaviour xsi:type="constantSpeedBehaviour">
+            <id>36e054b4-d4e3-4ffa-b11b-e72c6ca7449d</id>
+            <goals/>
+            <isSystemUnderTest>false</isSystemUnderTest>
+            <systemUnderTestConfig>
+                <address>localhost</address>
+                <port>3002</port>
+                <websocket>true</websocket>
+            </systemUnderTestConfig>
+        </behaviour>
+        <length>
+            <id>13fec60f-1888-48f7-a692-3bb99841916b</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>length</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </length>
+        <weight>
+            <id>e033b16b-34cb-4ec0-aadd-5a195b639526</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">112.9</value>
+            <name>weight</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </weight>
+        <width>
+            <id>62327e20-4a2e-44c3-8e4c-15af35ff098b</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">1.0</value>
+            <name>width</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>true</publish>
+            <subscribe>false</subscribe>
+        </width>
+        <course>
+            <id>325b3fda-68a4-43af-85a3-1f7b9da0b7f7</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="rotationUnit">
+                <abbreviation>°</abbreviation>
+                <name>degree</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">180.4</value>
+            <name>course</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </course>
+        <draught>
+            <id>1baef708-dd14-4c57-9107-789e8b6c2b80</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="distanceUnit">
+                <abbreviation>m</abbreviation>
+                <name>meter</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">12.6</value>
+            <name>draught</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </draught>
+        <homeHarbour>
+            <id>e878894a-e0dd-494f-9fb7-747278b24f82</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Hamburch</value>
+            <name>homeHarbour</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </homeHarbour>
+        <vesselName>
+            <id>98e29298-21fa-4847-872b-f74314e93a78</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">SS Pope</value>
+            <name>vesselName</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </vesselName>
+        <flag>
+            <id>dd17b2f9-29a3-4536-80e4-472a16029caa</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Belarus</value>
+            <name>flag</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </flag>
+        <imo>
+            <id>ea1a2820-fb46-47ff-a28d-9e9c31aa8b0b</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">dsfdfsdfc</value>
+            <name>imo</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </imo>
+        <mmsi>
+            <id>e6d5e27e-4981-407f-868b-76b65f4b37da</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">fe34243232rwdsgdsv</value>
+            <name>mmsi</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </mmsi>
+        <callsign>
+            <id>06878caf-d2ab-4334-a4b2-cf8a4691ffb2</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="noUnit">
+                <abbreviation>nau</abbreviation>
+                <name>no unit</name>
+                <unitToBase>1.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:string">Generic</value>
+            <name>callsign</name>
+            <dataType>java.lang.String</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </callsign>
+        <loadCapacity>
+            <id>0460b946-ded8-43fb-80b5-eac854973d00</id>
+            <attributeType>SINGLE</attributeType>
+            <unit xsi:type="weightUnit">
+                <abbreviation>T</abbreviation>
+                <name>ton</name>
+                <unitToBase>1000000.0</unitToBase>
+            </unit>
+            <value xmlns:xs="http://www.w3.org/2001/XMLSchema" xsi:type="xs:double">2.5</value>
+            <name>loadCapacity</name>
+            <dataType>java.lang.Double</dataType>
+            <publish>false</publish>
+            <subscribe>false</subscribe>
+        </loadCapacity>
+    </simulationObject>
+</Scenario>
