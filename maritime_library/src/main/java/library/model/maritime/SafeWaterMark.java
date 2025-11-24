@@ -53,10 +53,10 @@ public class SafeWaterMark extends Obstacle {
     private SimulationProperty<String> marking;
 
     /**
-     * Indicates whether the mark is fitted with a light.
+     * The light signal characteristics (can be null if not lit).
      */
     @XmlElement
-    private SimulationProperty<Boolean> isLit;
+    private LightSignal lightSignal;
 
     /**
      * Default constructor for JAXB.
@@ -73,10 +73,10 @@ public class SafeWaterMark extends Obstacle {
      * @param geometry The physical shape (collision body).
      * @param shape The shape of the mark (SPHERICAL, PILLAR, or SPAR).
      * @param marking The marking text or identifier on the mark.
-     * @param isLit Whether the mark is fitted with a light.
+     * @param lightSignal The light signal characteristics (can be null if not lit).
      */
     public SafeWaterMark(String nameStr, Position position, Geometry geometry,
-                         SafeWaterMarkShape shape, String marking, boolean isLit) {
+                         SafeWaterMarkShape shape, String marking, LightSignal lightSignal) {
         // A Safe Water Mark is always physical (true)
         super(true, position, geometry, 0.0);
 
@@ -93,8 +93,8 @@ public class SafeWaterMark extends Obstacle {
         // Set the marking
         this.marking = new SimulationProperty<>(false, false, NoUnit.get(), marking, "marking");
 
-        // Set whether it's lit
-        this.isLit = new SimulationProperty<>(false, false, NoUnit.get(), isLit, "isLit");
+        // Set the light signal
+        this.lightSignal = lightSignal;
     }
 
     // Getters and Setters
@@ -131,11 +131,20 @@ public class SafeWaterMark extends Obstacle {
         this.marking = marking;
     }
 
-    public SimulationProperty<Boolean> getIsLit() {
-        return isLit;
+    public LightSignal getLightSignal() {
+        return lightSignal;
     }
 
-    public void setIsLit(SimulationProperty<Boolean> isLit) {
-        this.isLit = isLit;
+    public void setLightSignal(LightSignal lightSignal) {
+        this.lightSignal = lightSignal;
+    }
+
+    /**
+     * Checks if this mark is fitted with a light.
+     *
+     * @return true if the mark has a light signal, false otherwise.
+     */
+    public boolean isLit() {
+        return lightSignal != null;
     }
 }

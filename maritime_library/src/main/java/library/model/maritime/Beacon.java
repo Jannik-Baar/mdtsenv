@@ -10,17 +10,17 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Represents a Lateral Mark (Lateralzeichen) - Requirement F-3.3.
+ * Represents a Beacon (Bake/Molenfeuer) - Requirement F-3.9.
  * <p>
- * A Lateral Mark is an {@link Obstacle} used to indicate the port or starboard side
- * of the route to be followed.
+ * A Beacon is a fixed aid to navigation, typically placed at the head of a breakwater (Mole),
+ * pier, or other prominent location to mark channels, harbor entrances, or dangers.
  * </p>
  */
 @XmlRootElement
-public class LateralMark extends Obstacle {
+public class Beacon extends Obstacle {
 
     /**
-     * The identifier/name of this mark (e.g. "Elbe 1").
+     * The identifier/name of this beacon (e.g. "North Pier Beacon").
      * Defined explicitly here as superclasses do not provide a name property.
      */
     @XmlElement
@@ -39,53 +39,41 @@ public class LateralMark extends Obstacle {
     private SimulationProperty<Region> region;
 
     /**
-     * The number/identifier displayed on the mark.
-     */
-    @XmlElement
-    private SimulationProperty<String> number;
-
-    /**
-     * The color of the mark (derived from type and region).
+     * The color of the beacon (derived from type and region).
      */
     @XmlElement
     private SimulationProperty<LateralMarkColor> color;
 
     /**
-     * The shape of the mark (derived from type and region).
+     * The shape of the beacon (derived from type and region).
      */
     @XmlElement
     private SimulationProperty<LateralMarkShape> shape;
 
-    /**
-     * The light signal characteristics (can be null if not lit).
-     */
     @XmlElement
     private LightSignal lightSignal;
 
     /**
      * Default constructor for JAXB.
      */
-    public LateralMark() {
+    public Beacon() {
         super();
     }
 
     /**
-     * Creates a new Lateral Mark.
+     * Creates a new Beacon.
      *
-     * @param nameStr The identifier of the mark (e.g., "Elbe 1").
-     * @param position The geographic position.
-     * @param geometry The physical shape (collision body).
-     * @param markType The lateral type (e.g. STARBOARD_HAND).
+     * @param nameStr The identifier of the beacon (e.g., "North Pier Beacon").
+     * @param position The fixed geographic position.
+     * @param geometry The physical shape (e.g., the tower geometry).
+     * @param markType The lateral type (e.g., PORT_HAND for the left side of the entrance).
      * @param region The IALA region (A or B).
-     * @param number The displayed number/string on the mark (e.g. "1").
      * @param lightSignal The light signal characteristics (can be null if not lit).
      */
-    public LateralMark(String nameStr, Position position, Geometry geometry,
-                       LateralMarkType markType, Region region, String number, LightSignal lightSignal) {
-        // A Lateral Mark is always physical (true)
+    public Beacon(String nameStr, Position position, Geometry geometry, LateralMarkType markType, Region region, LightSignal lightSignal) {
         super(true, position, geometry, 0.0);
 
-        // Initialize the name property
+        // Initialize the name property locally
         this.name = new SimulationProperty<>(false, false, NoUnit.get(), nameStr, "name");
 
         // Set mark type
@@ -93,9 +81,6 @@ public class LateralMark extends Obstacle {
 
         // Set region
         this.region = new SimulationProperty<>(false, false, NoUnit.get(), region, "region");
-
-        // Set number
-        this.number = new SimulationProperty<>(false, false, NoUnit.get(), number, "number");
 
         // Derive and set color and shape based on IALA rules
         applyStandardAppearance(markType, region);
@@ -177,14 +162,6 @@ public class LateralMark extends Obstacle {
 
     public void setRegion(SimulationProperty<Region> region) {
         this.region = region;
-    }
-
-    public SimulationProperty<String> getNumber() {
-        return number;
-    }
-
-    public void setNumber(SimulationProperty<String> number) {
-        this.number = number;
     }
 
     public SimulationProperty<LateralMarkColor> getColor() {

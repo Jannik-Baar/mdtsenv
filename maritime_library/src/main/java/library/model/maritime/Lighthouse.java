@@ -47,30 +47,10 @@ public class Lighthouse extends Obstacle {
     private SimulationProperty<Double> height;
 
     /**
-     * The color of the lighthouse light.
+     * The light signal characteristics (pattern, period, nominal range, color).
      */
     @XmlElement
-    private SimulationProperty<LighthouseColor> lightColor;
-
-    /**
-     * The light pattern/characteristic (e.g., flashing, fixed, occulting).
-     */
-    @XmlElement
-    private SimulationProperty<LighthousePattern> lightPattern;
-
-    /**
-     * The period of the light cycle in seconds (e.g., 10 seconds for a light that flashes every 10 seconds).
-     * Only applicable for flashing, occulting, or isophase lights.
-     */
-    @XmlElement
-    private SimulationProperty<Double> lightPeriod;
-
-    /**
-     * The nominal range of the light in nautical miles.
-     * This is the distance at which the light can be seen in normal visibility conditions.
-     */
-    @XmlElement
-    private SimulationProperty<Double> nominalRange;
+    private LightSignal lightSignal;
 
     /**
      * The focal height of the light above mean sea level in meters.
@@ -107,7 +87,7 @@ public class Lighthouse extends Obstacle {
      * @param isActive Whether the lighthouse is currently operational.
      */
     public Lighthouse(String name, Position position, Geometry geometry,
-                      double height, LighthouseColor lightColor, LighthousePattern lightPattern,
+                      double height, LightColor lightColor, LighthousePattern lightPattern,
                       double lightPeriod, double nominalRange, double focalHeight,
                       boolean isActive) {
         // A Lighthouse is always physical (true)
@@ -116,10 +96,15 @@ public class Lighthouse extends Obstacle {
         // Initialize properties
         this.name = new SimulationProperty<>(false, false, NoUnit.get(), name, "name");
         this.height = new SimulationProperty<>(false, false, DistanceUnit.METER, height, "height");
-        this.lightColor = new SimulationProperty<>(false, false, NoUnit.get(), lightColor, "lightColor");
-        this.lightPattern = new SimulationProperty<>(false, false, NoUnit.get(), lightPattern, "lightPattern");
-        this.lightPeriod = new SimulationProperty<>(false, false, NoUnit.get(), lightPeriod, "lightPeriod");
-        this.nominalRange = new SimulationProperty<>(false, false, DistanceUnit.NAUTICALMILE, nominalRange, "nominalRange");
+        
+        // Create LightSignal with all light characteristics
+        this.lightSignal = new LightSignal(
+            new SimulationProperty<>(false, false, NoUnit.get(), lightPattern, "lightPattern"),
+            new SimulationProperty<>(false, false, NoUnit.get(), lightPeriod, "lightPeriod"),
+            new SimulationProperty<>(false, false, DistanceUnit.NAUTICALMILE, nominalRange, "nominalRange"),
+            new SimulationProperty<>(false, false, NoUnit.get(), lightColor, "lightColor")
+        );
+        
         this.focalHeight = new SimulationProperty<>(false, false, DistanceUnit.METER, focalHeight, "focalHeight");
         this.isActive = new SimulationProperty<>(false, false, NoUnit.get(), isActive, "isActive");
     }
@@ -135,7 +120,7 @@ public class Lighthouse extends Obstacle {
      * @param nominalRange The nominal range in nautical miles.
      */
     public Lighthouse(String name, Position position, Geometry geometry,
-                      double height, LighthouseColor lightColor, double nominalRange) {
+                      double height, LightColor lightColor, double nominalRange) {
         this(name, position, geometry, height, lightColor,
                 LighthousePattern.FLASHING, 10.0, nominalRange, height * 0.8, true);
     }
@@ -158,36 +143,12 @@ public class Lighthouse extends Obstacle {
         this.height = height;
     }
 
-    public SimulationProperty<LighthouseColor> getLightColor() {
-        return lightColor;
+    public LightSignal getLightSignal() {
+        return lightSignal;
     }
 
-    public void setLightColor(SimulationProperty<LighthouseColor> lightColor) {
-        this.lightColor = lightColor;
-    }
-
-    public SimulationProperty<LighthousePattern> getLightPattern() {
-        return lightPattern;
-    }
-
-    public void setLightPattern(SimulationProperty<LighthousePattern> lightPattern) {
-        this.lightPattern = lightPattern;
-    }
-
-    public SimulationProperty<Double> getLightPeriod() {
-        return lightPeriod;
-    }
-
-    public void setLightPeriod(SimulationProperty<Double> lightPeriod) {
-        this.lightPeriod = lightPeriod;
-    }
-
-    public SimulationProperty<Double> getNominalRange() {
-        return nominalRange;
-    }
-
-    public void setNominalRange(SimulationProperty<Double> nominalRange) {
-        this.nominalRange = nominalRange;
+    public void setLightSignal(LightSignal lightSignal) {
+        this.lightSignal = lightSignal;
     }
 
     public SimulationProperty<Double> getFocalHeight() {
@@ -231,8 +192,9 @@ public class Lighthouse extends Obstacle {
      */
     public double getEffectiveRange() {
         double geographicRange = calculateGeographicRange();
-        double luminousRange = (nominalRange != null && nominalRange.getValue() != null)
-                ? nominalRange.getValue() : 0.0;
+        double luminousRange = (lightSignal != null && lightSignal.getNominalRange() != null 
+                && lightSignal.getNominalRange().getValue() != null)
+                ? lightSignal.getNominalRange().getValue() : 0.0;
 
         return Math.min(geographicRange, luminousRange);
     }
