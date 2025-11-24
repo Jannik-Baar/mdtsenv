@@ -23,6 +23,9 @@ maritime.MaritimeWeather
 maritime.MaxDraughtRestriction
 maritime.MaxWidthRestriction
 maritime.PassengerShip
+maritime.TrafficSeparationSchemeRestriction
+maritime.TSSTrafficDirection
+maritime.TSSZoneType
 maritime.Vessel
 maritime.Waterbody
 dto.conditions.CompareAttributeCondition
