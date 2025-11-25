@@ -1,0 +1,82 @@
+@startuml
+
+title Realisierung Anforderung F-3.3: Lateralsystem inklusive Restriktionen
+
+' --- Basis-Klassen der Bibliothek ---
+
+' Abstrakte Basisklasse für Einschränkungen
+class "Restriction<T>" as Restriction {
+}
+
+' Zwischenklasse für Verkehrsrestriktionen
+class "TrafficRestriction<T>" as TrafficRestriction {
+}
+
+' Infrastruktur als Basis für Objekte
+class Infrastructure {
+    - imposedRestrictions : ArrayList<Restriction<?>>
+    + addRestriction(restriction: Restriction<?>)
+    + getImposedRestrictions()
+}
+
+' --- Kernklassen für F-3.3 (Lateral System) ---
+
+' Die konkrete Restriktion für Lateralzeichen
+class LateralMarkRestriction {
+    - lateralMark: LateralMark
+
+    + LateralMarkRestriction(lateralMark: LateralMark)
+    + getRegion(): SimulationProperty<Region>
+    + getMarkType(): SimulationProperty<LateralMarkType>
+    + getColor(): SimulationProperty<LateralMarkColor>
+}
+
+' Das Lateralzeichen selbst
+class LateralMark {
+    - markType: SimulationProperty<LateralMarkType>
+    - region: SimulationProperty<Region>
+    - color: SimulationProperty<LateralMarkColor>
+    - shape: SimulationProperty<LateralMarkShape>
+
+    + applyStandardAppearance(...)
+}
+
+' --- Enums und Typen ---
+
+enum LateralMarkType {
+    PORT_HAND
+    STARBOARD_HAND
+    PREFERRED_CHANNEL_TO_STARBOARD
+    PREFERRED_CHANNEL_TO_PORT
+}
+
+enum Region {
+    REGION_A
+    REGION_B
+}
+
+' --- Beziehungen ---
+
+' Vererbungshierarchien
+Restriction <|-- TrafficRestriction
+TrafficRestriction <|-- LateralMarkRestriction
+Infrastructure <|-- LateralMark
+
+' Infrastruktur besitzt eine Liste von Restriktionen
+Infrastructure "1" o-- "0..*" Restriction : imposedRestrictions >
+
+' Die LateralMarkRestriction referenziert das konkrete Zeichen
+LateralMarkRestriction --> LateralMark : definiert Regeln basierend auf >
+
+' Nutzung der Enums
+LateralMark *-- LateralMarkType
+LateralMark *-- Region
+LateralMarkRestriction ..> LateralMarkType : nutzt (als Typ T)
+
+note right of LateralMarkRestriction
+  Wrapper-Klasse für F-3.3:
+  Delegiert Anfragen (z.B. Region, Farbe)
+  an das enthaltene <b>lateralMark</b>-Objekt.
+end note
+
+@enduml

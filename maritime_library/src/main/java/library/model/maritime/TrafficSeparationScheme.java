@@ -1,24 +1,26 @@
 package library.model.maritime;
 
+import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.NoUnit;
-import library.model.traffic.TrafficRestriction;
+import library.model.traffic.Infrastructure;
 import lombok.Getter;
 import lombok.Setter;
+import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Represents a Traffic Separation Scheme (TSS) restriction according to IMO standards.
+ * Represents a Traffic Separation Scheme (TSS) according to IMO standards.
  * 
  * A TSS is a routing measure aimed at the separation of opposing streams of traffic
  * by appropriate means and by the establishment of traffic lanes. TSSs are adopted
  * by the International Maritime Organization (IMO) and are used in areas of high
  * traffic density to improve safety of navigation.
  * 
- * This restriction can be applied to Infrastructure objects to define areas where
- * maritime traffic must follow specific routing rules.
+ * This infrastructure object defines areas where maritime traffic must follow 
+ * specific routing rules.
  * 
  * Key features:
  * - Defines the zone type (traffic lane, separation zone, etc.)
@@ -31,7 +33,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Setter
 @Getter
 @XmlRootElement
-public class TrafficSeparationSchemeRestriction extends TrafficRestriction<TrafficSeparationSchemeZoneType> {
+public class TrafficSeparationScheme extends Infrastructure {
+
+    /**
+     * The type of TSS zone (e.g., TRAFFIC_LANE, SEPARATION_ZONE, etc.).
+     */
+    @XmlElement
+    private SimulationProperty<TrafficSeparationSchemeZoneType> zoneType;
 
     /**
      * The direction of traffic flow within this TSS zone.
@@ -58,27 +66,34 @@ public class TrafficSeparationSchemeRestriction extends TrafficRestriction<Traff
     /**
      * Default constructor for XML deserialization.
      */
-    public TrafficSeparationSchemeRestriction() {
+    public TrafficSeparationScheme() {
         super();
     }
     
     /**
-     * Creates a Traffic Separation Scheme restriction with specified zone type and traffic direction.
+     * Creates a Traffic Separation Scheme with specified properties.
      * 
+     * @param physical Whether this infrastructure is physical
+     * @param position The position of the TSS
+     * @param form The geometric form of the TSS area
+     * @param rotation The rotation of the TSS
      * @param zoneType The type of TSS zone (e.g., TRAFFIC_LANE, SEPARATION_ZONE)
      * @param trafficDirection The permitted direction of traffic flow
      * @param tssName The name or identifier of the TSS
      */
-    public TrafficSeparationSchemeRestriction(TrafficSeparationSchemeZoneType zoneType,
-                                              TrafficSeparationSchemeTrafficDirection trafficDirection,
-                                              String tssName) {
-        super();
+    public TrafficSeparationScheme(boolean physical,
+                                   Position position,
+                                   Geometry form,
+                                   double rotation,
+                                   TrafficSeparationSchemeZoneType zoneType,
+                                   TrafficSeparationSchemeTrafficDirection trafficDirection,
+                                   String tssName) {
+        super(physical, position, form, rotation);
         
-        // 1. Set Zone Type (the main restricted property)
-        SimulationProperty<TrafficSeparationSchemeZoneType> zoneTypeProp = new SimulationProperty<>(
+        // 1. Set Zone Type
+        this.zoneType = new SimulationProperty<>(
                 false, false, NoUnit.get(), zoneType, "tssZoneType"
         );
-        this.addLimitedProperty(zoneTypeProp);
         
         // 2. Set Traffic Direction
         this.trafficDirection = new SimulationProperty<>(
@@ -97,16 +112,25 @@ public class TrafficSeparationSchemeRestriction extends TrafficRestriction<Traff
     }
     
     /**
-     * Creates a Traffic Separation Scheme restriction with a custom bearing direction.
+     * Creates a Traffic Separation Scheme with a custom bearing direction.
      * 
+     * @param physical Whether this infrastructure is physical
+     * @param position The position of the TSS
+     * @param form The geometric form of the TSS area
+     * @param rotation The rotation of the TSS
      * @param zoneType The type of TSS zone
      * @param customBearing The bearing in degrees (0-360)
      * @param tssName The name or identifier of the TSS
      */
-    public TrafficSeparationSchemeRestriction(TrafficSeparationSchemeZoneType zoneType,
-                                              Double customBearing,
-                                              String tssName) {
-        this(zoneType, TrafficSeparationSchemeTrafficDirection.CUSTOM_BEARING, tssName);
+    public TrafficSeparationScheme(boolean physical,
+                                   Position position,
+                                   Geometry form,
+                                   double rotation,
+                                   TrafficSeparationSchemeZoneType zoneType,
+                                   Double customBearing,
+                                   String tssName) {
+        this(physical, position, form, rotation, zoneType, 
+             TrafficSeparationSchemeTrafficDirection.CUSTOM_BEARING, tssName);
         
         // Set the custom bearing value
         this.customBearing = new SimulationProperty<>(
@@ -174,18 +198,12 @@ public class TrafficSeparationSchemeRestriction extends TrafficRestriction<Traff
      * @return true if vessels should not enter this zone, false otherwise
      */
     public boolean isEntryProhibited() {
-        if (this.getLimitedProperties().isEmpty()) {
+        if (this.zoneType == null || this.zoneType.getValue() == null) {
             return false;
         }
         
-        SimulationProperty<?> zoneProp = this.getLimitedProperties().get(0);
-        if (zoneProp.getValue() instanceof TrafficSeparationSchemeZoneType) {
-            TrafficSeparationSchemeZoneType zoneType = (TrafficSeparationSchemeZoneType) zoneProp.getValue();
-            return zoneType == TrafficSeparationSchemeZoneType.SEPARATION_ZONE ||
-                   zoneType == TrafficSeparationSchemeZoneType.AREA_TO_BE_AVOIDED;
-        }
-        
-        return false;
+        TrafficSeparationSchemeZoneType type = this.zoneType.getValue();
+        return type == TrafficSeparationSchemeZoneType.SEPARATION_ZONE ||
+               type == TrafficSeparationSchemeZoneType.AREA_TO_BE_AVOIDED;
     }
 }
-

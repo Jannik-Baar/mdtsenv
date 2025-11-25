@@ -1,6 +1,8 @@
 package library.model.maritime;
 
 import library.model.simulation.Position;
+import library.model.simulation.SimulationProperty;
+import library.model.simulation.units.NoUnit;
 import library.model.traffic.Infrastructure;
 import library.model.traffic.PossibleDomains;
 import org.locationtech.jts.geom.Geometry;
@@ -30,10 +32,29 @@ import java.util.ArrayList;
 public class RestrictedArea extends Infrastructure {
 
     /**
-     * The type of restriction applied to this area.
+     * The type of restricted area.
      */
     @XmlElement
-    private RestrictedAreaRestriction restriction;
+    private SimulationProperty<RestrictedAreaType> restrictionType;
+
+    /**
+     * The name or identifier of the restricted area.
+     */
+    @XmlElement
+    private SimulationProperty<String> areaName;
+
+    /**
+     * The reason for the restriction (e.g., "Military exercise area", "Nature conservation").
+     */
+    @XmlElement
+    private SimulationProperty<String> reason;
+
+    /**
+     * Indicates whether this is a permanent or temporary restriction.
+     * True = permanent, False = temporary.
+     */
+    @XmlElement
+    private SimulationProperty<Boolean> isPermanent;
 
     /**
      * Default constructor for JAXB.
@@ -64,9 +85,19 @@ public class RestrictedArea extends Infrastructure {
         domains.add(PossibleDomains.MARITIME);
         this.setCanBeUsedBy(domains);
 
-        // Create and add the restriction
-        this.restriction = new RestrictedAreaRestriction(restrictionType, areaName, reason, isPermanent);
-        this.addRestriction(restriction);
+        // Initialize properties
+        this.restrictionType = new SimulationProperty<>(
+                false, false, NoUnit.get(), restrictionType, "restrictionType"
+        );
+        this.areaName = new SimulationProperty<>(
+                false, false, NoUnit.get(), areaName, "areaName"
+        );
+        this.reason = new SimulationProperty<>(
+                false, false, NoUnit.get(), reason, "reason"
+        );
+        this.isPermanent = new SimulationProperty<>(
+                false, false, NoUnit.get(), isPermanent, "isPermanent"
+        );
     }
 
     /**
@@ -88,31 +119,154 @@ public class RestrictedArea extends Infrastructure {
                           ArrayList<PossibleDomains> possibleDomains) {
         super(physical, position, form, rotation, possibleDomains);
 
-        // Create and add the restriction
-        this.restriction = new RestrictedAreaRestriction(restrictionType, areaName, reason, isPermanent);
-        this.addRestriction(restriction);
+        // Initialize properties
+        this.restrictionType = new SimulationProperty<>(
+                false, false, NoUnit.get(), restrictionType, "restrictionType"
+        );
+        this.areaName = new SimulationProperty<>(
+                false, false, NoUnit.get(), areaName, "areaName"
+        );
+        this.reason = new SimulationProperty<>(
+                false, false, NoUnit.get(), reason, "reason"
+        );
+        this.isPermanent = new SimulationProperty<>(
+                false, false, NoUnit.get(), isPermanent, "isPermanent"
+        );
     }
 
     // Getters and Setters
 
-    public RestrictedAreaRestriction getRestriction() {
-        return restriction;
+    public SimulationProperty<RestrictedAreaType> getRestrictionType() {
+        return restrictionType;
     }
 
-    public void setRestriction(RestrictedAreaRestriction restriction) {
-        this.restriction = restriction;
+    public void setRestrictionType(SimulationProperty<RestrictedAreaType> restrictionType) {
+        this.restrictionType = restrictionType;
+    }
+
+    public SimulationProperty<String> getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(SimulationProperty<String> areaName) {
+        this.areaName = areaName;
+    }
+
+    public SimulationProperty<String> getReason() {
+        return reason;
+    }
+
+    public void setReason(SimulationProperty<String> reason) {
+        this.reason = reason;
+    }
+
+    public SimulationProperty<Boolean> getIsPermanent() {
+        return isPermanent;
+    }
+
+    public void setIsPermanent(SimulationProperty<Boolean> isPermanent) {
+        this.isPermanent = isPermanent;
     }
 
     /**
      * Checks if entry into this restricted area is completely prohibited.
+     * <p>
+     * Certain restriction types (e.g., MILITARY_ZONE, CONSTRUCTION_ZONE, SECURITY_ZONE)
+     * typically prohibit all entry, while others may only restrict specific activities.
+     * </p>
      *
      * @return true if entry is prohibited, false otherwise.
      */
     public boolean isEntryProhibited() {
-        if (restriction != null) {
-            return restriction.isEntryProhibited();
+        if (restrictionType == null || restrictionType.getValue() == null) {
+            return false;
         }
-        return false;
+
+        RestrictedAreaType type = restrictionType.getValue();
+
+        // These types typically prohibit all entry
+        switch (type) {
+            case MILITARY_ZONE:
+            case CONSTRUCTION_ZONE:
+            case SECURITY_ZONE:
+            case HAZARDOUS_CARGO_ZONE:
+                return true;
+
+            // These types may allow navigation but restrict specific activities
+            case ANCHORAGE_PROHIBITED:
+            case FISHING_PROHIBITED:
+            case NATURE_CONSERVATION:
+            case ENVIRONMENTAL_PROTECTION:
+            case ARCHAEOLOGICAL_SITE:
+                return false; // Navigation may be allowed, but specific activities are restricted
+
+            case GENERAL_RESTRICTION:
+            default:
+                // For general restrictions, we assume navigation is restricted but not necessarily prohibited
+                return false;
+        }
+    }
+
+    /**
+     * Checks if anchoring is prohibited in this restricted area.
+     *
+     * @return true if anchoring is prohibited, false otherwise.
+     */
+    public boolean isAnchoringProhibited() {
+        if (restrictionType == null || restrictionType.getValue() == null) {
+            return false;
+        }
+
+        RestrictedAreaType type = restrictionType.getValue();
+
+        // Most restricted areas prohibit anchoring
+        switch (type) {
+            case ANCHORAGE_PROHIBITED:
+            case MILITARY_ZONE:
+            case CONSTRUCTION_ZONE:
+            case SECURITY_ZONE:
+            case HAZARDOUS_CARGO_ZONE:
+            case ARCHAEOLOGICAL_SITE:
+            case ENVIRONMENTAL_PROTECTION:
+            case NATURE_CONSERVATION:
+                return true;
+
+            case FISHING_PROHIBITED:
+            case GENERAL_RESTRICTION:
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Checks if fishing is prohibited in this restricted area.
+     *
+     * @return true if fishing is prohibited, false otherwise.
+     */
+    public boolean isFishingProhibited() {
+        if (restrictionType == null || restrictionType.getValue() == null) {
+            return false;
+        }
+
+        RestrictedAreaType type = restrictionType.getValue();
+
+        // Several types prohibit fishing
+        switch (type) {
+            case FISHING_PROHIBITED:
+            case NATURE_CONSERVATION:
+            case ENVIRONMENTAL_PROTECTION:
+            case ARCHAEOLOGICAL_SITE:
+            case HAZARDOUS_CARGO_ZONE:
+            case MILITARY_ZONE:
+                return true;
+
+            case CONSTRUCTION_ZONE:
+            case SECURITY_ZONE:
+            case ANCHORAGE_PROHIBITED:
+            case GENERAL_RESTRICTION:
+            default:
+                return false;
+        }
     }
 
     /**
@@ -121,8 +275,8 @@ public class RestrictedArea extends Infrastructure {
      * @return The reason string, or null if not set.
      */
     public String getRestrictionReason() {
-        if (restriction != null && restriction.getReason() != null) {
-            return restriction.getReason().getValue();
+        if (reason != null) {
+            return reason.getValue();
         }
         return null;
     }

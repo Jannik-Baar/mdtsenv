@@ -21,7 +21,7 @@ public abstract class ActiveSimulationObject extends DynamicSimulationObject imp
 
     @XmlElement
     private MethodCall linkedMethodCall;
-FF
+
     public MethodCall getLinkedMethodCall() {
         return linkedMethodCall;
     }

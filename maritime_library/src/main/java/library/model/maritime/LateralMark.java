@@ -3,7 +3,7 @@ package library.model.maritime;
 import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.NoUnit;
-import library.model.traffic.Infrastructure;
+import library.model.traffic.Obstacle;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -12,12 +12,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Represents a Lateral Mark (Lateralzeichen) - Requirement F-3.3.
  * <p>
- * A Lateral Mark is an {@link Infrastructure} used to indicate the port or starboard side
+ * A Lateral Mark is an {@link Obstacle} used to indicate the port or starboard side
  * of the route to be followed.
  * </p>
  */
 @XmlRootElement
-public class LateralMark extends Infrastructure {
+public class LateralMark extends Obstacle {
 
     /**
      * The identifier/name of this mark (e.g. "Elbe 1").

@@ -47,7 +47,7 @@ maritime.SafeWaterMarkColor
 maritime.SafeWaterMarkRestriction
 maritime.SafeWaterMarkShape
 maritime.SafeWaterMarkType
-maritime.TrafficSeparationSchemeRestriction
+maritime.TrafficSeparationScheme
 maritime.TrafficSeparationSchemeTrafficDirection
 maritime.TrafficSeparationSchemeZoneType
 maritime.TSSTrafficDirection

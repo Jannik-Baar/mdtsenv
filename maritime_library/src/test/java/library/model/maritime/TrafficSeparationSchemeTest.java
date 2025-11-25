@@ -13,31 +13,48 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for TrafficSeparationSchemeRestriction.
+ * Unit tests for TrafficSeparationScheme.
  * 
- * Tests the creation and validation of TSS restrictions according to IMO standards.
+ * Tests the creation and validation of TSS infrastructure according to IMO standards.
  */
-class TrafficSeparationSchemeRestrictionTest {
+class TrafficSeparationSchemeTest {
 
     private final GeometryFactory geometryFactory = new GeometryFactory();
+
+    /**
+     * Helper method to create a default polygon for testing.
+     */
+    private Polygon createDefaultPolygon() {
+        Coordinate[] coordinates = new Coordinate[]{
+                new Coordinate(1.0, 51.0),
+                new Coordinate(1.5, 51.0),
+                new Coordinate(1.5, 51.5),
+                new Coordinate(1.0, 51.5),
+                new Coordinate(1.0, 51.0)
+        };
+        return geometryFactory.createPolygon(coordinates);
+    }
 
     /**
      * Tests creation of a basic traffic lane with north-to-south direction.
      */
     @Test
     void testCreateTrafficLaneWithCardinalDirection() {
-        // Create a TSS restriction for a northbound traffic lane
-        TrafficSeparationSchemeRestriction tssRestriction = new TrafficSeparationSchemeRestriction(
+        // Create a TSS for a northbound traffic lane
+        TrafficSeparationScheme tss = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
                 TrafficSeparationSchemeTrafficDirection.NORTH_TO_SOUTH,
                 "Dover Strait Southbound Lane"
         );
 
-        assertNotNull(tssRestriction);
-        assertEquals("Dover Strait Southbound Lane", tssRestriction.getTssName().getValue());
-        assertEquals(TrafficSeparationSchemeTrafficDirection.NORTH_TO_SOUTH, tssRestriction.getTrafficDirection().getValue());
-        assertFalse(tssRestriction.getLimitedProperties().isEmpty());
-        assertEquals(TrafficSeparationSchemeZoneType.TRAFFIC_LANE, tssRestriction.getLimitedProperties().get(0).getValue());
+        assertNotNull(tss);
+        assertEquals("Dover Strait Southbound Lane", tss.getTssName().getValue());
+        assertEquals(TrafficSeparationSchemeTrafficDirection.NORTH_TO_SOUTH, tss.getTrafficDirection().getValue());
+        assertEquals(TrafficSeparationSchemeZoneType.TRAFFIC_LANE, tss.getZoneType().getValue());
     }
 
     /**
@@ -46,16 +63,20 @@ class TrafficSeparationSchemeRestrictionTest {
     @Test
     void testCreateTrafficLaneWithCustomBearing() {
         // Create a TSS with a specific bearing of 045° (northeast)
-        TrafficSeparationSchemeRestriction tssRestriction = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme tss = new TrafficSeparationScheme(
+                true,
+                new Position(5.0, 36.0, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
                 45.0, // Custom bearing
                 "Strait of Gibraltar TSS"
         );
 
-        assertNotNull(tssRestriction);
-        assertEquals(TrafficSeparationSchemeTrafficDirection.CUSTOM_BEARING, tssRestriction.getTrafficDirection().getValue());
-        assertEquals(45.0, tssRestriction.getCustomBearing().getValue());
-        assertEquals("Strait of Gibraltar TSS", tssRestriction.getTssName().getValue());
+        assertNotNull(tss);
+        assertEquals(TrafficSeparationSchemeTrafficDirection.CUSTOM_BEARING, tss.getTrafficDirection().getValue());
+        assertEquals(45.0, tss.getCustomBearing().getValue());
+        assertEquals("Strait of Gibraltar TSS", tss.getTssName().getValue());
     }
 
     /**
@@ -63,7 +84,11 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testCreateSeparationZone() {
-        TrafficSeparationSchemeRestriction separationZone = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme separationZone = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.SEPARATION_ZONE,
                 TrafficSeparationSchemeTrafficDirection.NO_RESTRICTION,
                 "Dover Strait Separation Zone"
@@ -78,7 +103,11 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testCreateAreaToBeAvoided() {
-        TrafficSeparationSchemeRestriction avoidanceArea = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme avoidanceArea = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.AREA_TO_BE_AVOIDED,
                 TrafficSeparationSchemeTrafficDirection.NO_RESTRICTION,
                 "Protected Marine Area"
@@ -93,7 +122,11 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testHeadingComplianceCardinalDirection() {
-        TrafficSeparationSchemeRestriction northbound = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme northbound = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
                 TrafficSeparationSchemeTrafficDirection.SOUTH_TO_NORTH,
                 "Northbound Lane"
@@ -117,7 +150,11 @@ class TrafficSeparationSchemeRestrictionTest {
     @Test
     void testHeadingComplianceCustomBearing() {
         // Create TSS with 045° bearing (northeast)
-        TrafficSeparationSchemeRestriction customBearingLane = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme customBearingLane = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
                 45.0,
                 "Northeast Lane"
@@ -137,7 +174,11 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testHeadingComplianceWrapAround() {
-        TrafficSeparationSchemeRestriction northbound = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme northbound = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
                 TrafficSeparationSchemeTrafficDirection.SOUTH_TO_NORTH,
                 "Northbound"
@@ -155,7 +196,11 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testBidirectionalTraffic() {
-        TrafficSeparationSchemeRestriction inshoreZone = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme inshoreZone = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.INSHORE_TRAFFIC_ZONE,
                 TrafficSeparationSchemeTrafficDirection.BIDIRECTIONAL,
                 "Coastal Traffic Zone"
@@ -169,46 +214,29 @@ class TrafficSeparationSchemeRestrictionTest {
     }
 
     /**
-     * Integration test: TSS restriction applied to infrastructure.
+     * Integration test: TSS as Infrastructure with restrictions.
      */
     @Test
-    void testTSSAppliedToInfrastructure() {
-        // Create a polygon representing the traffic lane geometry
-        Coordinate[] coordinates = new Coordinate[]{
-                new Coordinate(1.0, 51.0),
-                new Coordinate(1.5, 51.0),
-                new Coordinate(1.5, 51.5),
-                new Coordinate(1.0, 51.5),
-                new Coordinate(1.0, 51.0)
-        };
-        Polygon laneGeometry = geometryFactory.createPolygon(coordinates);
-
-        // Create infrastructure with TSS restriction
-        Infrastructure tssLane = new Infrastructure(
+    void testTSSAsInfrastructure() {
+        // Create a TSS
+        TrafficSeparationScheme tss = new TrafficSeparationScheme(
                 true,
                 new Position(1.25, 51.25, 0),
-                laneGeometry,
-                0.0
-        );
-
-        // Add maritime domain
-        ArrayList<PossibleDomains> domains = new ArrayList<>();
-        domains.add(PossibleDomains.MARITIME);
-        tssLane.setCanBeUsedBy(domains);
-
-        // Create and add TSS restriction
-        TrafficSeparationSchemeRestriction tssRestriction = new TrafficSeparationSchemeRestriction(
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
                 TrafficSeparationSchemeTrafficDirection.WEST_TO_EAST,
                 "English Channel Eastbound"
         );
 
-        tssLane.getImposedRestrictions().add(tssRestriction);
+        // Add maritime domain
+        tss.addDomain(PossibleDomains.MARITIME);
 
-        // Verify the restriction is properly attached
-        assertFalse(tssLane.getImposedRestrictions().isEmpty());
-        assertEquals(1, tssLane.getImposedRestrictions().size());
-        assertTrue(tssLane.isUsableBy(PossibleDomains.MARITIME));
+        // Verify infrastructure properties
+        assertTrue(tss.isUsableBy(PossibleDomains.MARITIME));
+        assertFalse(tss.isUsableBy(PossibleDomains.ROAD));
+        assertEquals(1.25, tss.getPosition().getValue().getLongitude());
+        assertEquals(51.25, tss.getPosition().getValue().getLatitude());
     }
 
     /**
@@ -216,13 +244,17 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testRoundaboutTraffic() {
-        TrafficSeparationSchemeRestriction roundabout = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme roundabout = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.ROUNDABOUT,
                 TrafficSeparationSchemeTrafficDirection.CLOCKWISE,
                 "Traffic Roundabout"
         );
 
-        assertEquals(TrafficSeparationSchemeZoneType.ROUNDABOUT, roundabout.getLimitedProperties().get(0).getValue());
+        assertEquals(TrafficSeparationSchemeZoneType.ROUNDABOUT, roundabout.getZoneType().getValue());
         assertEquals(TrafficSeparationSchemeTrafficDirection.CLOCKWISE, roundabout.getTrafficDirection().getValue());
         
         // Roundabouts currently always return true (simplified implementation)
@@ -234,14 +266,18 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testPrecautionaryArea() {
-        TrafficSeparationSchemeRestriction precautionaryArea = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme precautionaryArea = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.PRECAUTIONARY_AREA,
                 TrafficSeparationSchemeTrafficDirection.NO_RESTRICTION,
                 "High Traffic Density Area"
         );
 
         assertEquals(TrafficSeparationSchemeZoneType.PRECAUTIONARY_AREA,
-                precautionaryArea.getLimitedProperties().get(0).getValue());
+                precautionaryArea.getZoneType().getValue());
         assertFalse(precautionaryArea.isEntryProhibited(), 
                 "Precautionary areas do not prohibit entry");
     }
@@ -251,7 +287,7 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testDefaultConstructor() {
-        TrafficSeparationSchemeRestriction tss = new TrafficSeparationSchemeRestriction();
+        TrafficSeparationScheme tss = new TrafficSeparationScheme();
         assertNotNull(tss);
     }
 
@@ -260,14 +296,18 @@ class TrafficSeparationSchemeRestrictionTest {
      */
     @Test
     void testNoAnchoringArea() {
-        TrafficSeparationSchemeRestriction noAnchorZone = new TrafficSeparationSchemeRestriction(
+        TrafficSeparationScheme noAnchorZone = new TrafficSeparationScheme(
+                true,
+                new Position(1.25, 51.25, 0),
+                createDefaultPolygon(),
+                0.0,
                 TrafficSeparationSchemeZoneType.NO_ANCHORING_AREA,
                 TrafficSeparationSchemeTrafficDirection.NO_RESTRICTION,
                 "Pipeline Protection Zone"
         );
 
         assertEquals(TrafficSeparationSchemeZoneType.NO_ANCHORING_AREA,
-                noAnchorZone.getLimitedProperties().get(0).getValue());
+                noAnchorZone.getZoneType().getValue());
         assertFalse(noAnchorZone.isEntryProhibited(), 
                 "No-anchoring areas allow passage but prohibit anchoring");
     }

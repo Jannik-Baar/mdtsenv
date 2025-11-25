@@ -4,6 +4,7 @@ import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.NoUnit;
 import library.model.traffic.Infrastructure;
+import library.model.traffic.Obstacle;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -23,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * </p>
  */
 @XmlRootElement
-public class SafeWaterMark extends Infrastructure {
+public class SafeWaterMark extends Obstacle {
 
     /**
      * The identifier/name of this mark (e.g. "Elbe Approach").
