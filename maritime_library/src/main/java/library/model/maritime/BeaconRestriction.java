@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Setter
 @Getter
 @XmlRootElement
-public class BeaconRestriction extends TrafficRestriction<LateralMarkType> {
+public class BeaconRestriction extends TrafficRestriction<BeaconType> {
 
     /**
      * The beacon that defines this restriction.
@@ -38,8 +38,8 @@ public class BeaconRestriction extends TrafficRestriction<LateralMarkType> {
         this.beacon = beacon;
         
         // Add the beacon's mark type as a limited property
-        if (beacon != null && beacon.getMarkType() != null) {
-            this.addLimitedProperty(beacon.getMarkType());
+        if (beacon != null && beacon.getBeaconType() != null) {
+            this.addLimitedProperty(beacon.getBeaconType());
         }
     }
 
@@ -57,7 +57,7 @@ public class BeaconRestriction extends TrafficRestriction<LateralMarkType> {
      *
      * @return The color, or null if no beacon is set.
      */
-    public SimulationProperty<LateralMarkColor> getColor() {
+    public SimulationProperty<BeaconColor> getColor() {
         return beacon != null ? beacon.getColor() : null;
     }
 
@@ -66,7 +66,7 @@ public class BeaconRestriction extends TrafficRestriction<LateralMarkType> {
      *
      * @return The shape, or null if no beacon is set.
      */
-    public SimulationProperty<LateralMarkShape> getShape() {
+    public SimulationProperty<BeaconShape> getShape() {
         return beacon != null ? beacon.getShape() : null;
     }
 
@@ -75,8 +75,8 @@ public class BeaconRestriction extends TrafficRestriction<LateralMarkType> {
      *
      * @return The mark type, or null if no beacon is set.
      */
-    public SimulationProperty<LateralMarkType> getMarkType() {
-        return beacon != null ? beacon.getMarkType() : null;
+    public SimulationProperty<BeaconType> getMarkType() {
+        return beacon != null ? beacon.getBeaconType() : null;
     }
 
     /**

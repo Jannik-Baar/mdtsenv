@@ -1,5 +1,6 @@
 maritime.AisActor
 maritime.AisSensor
+maritime.Anchorage
 maritime.Beacon
 maritime.BeaconRestriction
 maritime.behaviours.DefectEngineBehaviour
@@ -34,8 +35,9 @@ maritime.LighthouseRestriction
 maritime.LighthouseType
 maritime.Lock
 maritime.MaritimeWeather
-maritime.MaxDraughtRestriction
-maritime.MaxWidthRestriction
+maritime.MaxDraughtConstraint
+maritime.MaxFreeboardConstraint
+maritime.MaxWidthConstraint
 maritime.PassengerShip
 maritime.RestrictedArea
 maritime.RestrictedAreaRestriction

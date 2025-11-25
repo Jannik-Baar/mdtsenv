@@ -57,6 +57,7 @@ traffic.PossibleDomains
 traffic.Sensor
 traffic.SpeedSensor
 traffic.SteeringSystem
+traffic.TrafficConstraint
 traffic.TrafficParticipant
 traffic.TrafficRestriction
 traffic.Weather

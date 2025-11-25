@@ -4,7 +4,7 @@ import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.DistanceUnit;
 import library.model.simulation.units.NoUnit;
-import library.model.traffic.Obstacle;
+import library.model.traffic.Infrastructure;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * </p>
  */
 @XmlRootElement
-public class Lighthouse extends Obstacle {
+public class Lighthouse extends Infrastructure {
 
     /**
      * The name of the lighthouse (e.g., "Roter Sand", "Westerheversand").

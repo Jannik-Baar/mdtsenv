@@ -1,5 +1,6 @@
 package library.model.traffic;
 
+import library.model.limitations.Limitation;
 import library.model.simulation.objects.ActiveSimulationObject;
 import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
@@ -8,9 +9,12 @@ import library.model.simulation.units.DistanceUnit;
 import library.model.simulation.units.NoUnit;
 import library.model.simulation.units.SpeedUnit;
 import library.model.simulation.units.WeightUnit;
+import library.services.geodata.MapDataProvider;
 import org.locationtech.jts.geom.Geometry;
+import org.locationtech.jts.io.ParseException;
 
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -167,5 +171,63 @@ public class TrafficParticipant extends ActiveSimulationObject {
 
     public void setOrigin(SimulationProperty<Position> origin) {
         this.origin = origin;
+    }
+
+    /**
+     * Retrieves all limitations (constraints and restrictions) that apply to this traffic participant
+     * at its current position. This method queries the MapDataProvider to find all infrastructure
+     * elements at the current position and collects their imposed limitations.
+     * 
+     * @return A list of all limitations that apply at the current position, or an empty list if none apply
+     *         or if no MapDataProvider is available.
+     */
+    public List<Limitation<?>> getAppliedLimitations() {
+        List<Limitation<?>> appliedLimitations = new ArrayList<>();
+        
+        // Get the MapDataProvider for this simulation object
+        MapDataProvider mapDataProvider = MapDataProvider.getMap(this);
+        if (mapDataProvider == null) {
+            return appliedLimitations;
+        }
+        
+        try {
+            // Get all infrastructure at the current position
+            List<Infrastructure> infrastructures = mapDataProvider.getInfrastructureAtPosition(
+                this.getPosition().getValue()
+            );
+            
+            // Collect limitations from all applicable infrastructure
+            for (Infrastructure infrastructure : infrastructures) {
+                // Check if this infrastructure is usable by this traffic participant's domain
+                if (this.assignedDomain != null && 
+                    infrastructure.isUsableBy(this.assignedDomain.getValue())) {
+                    appliedLimitations.addAll(infrastructure.getImposedRestrictions());
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
+        return appliedLimitations;
+    }
+
+    /**
+     * Retrieves all limitations of a specific type that apply to this traffic participant
+     * at its current position.
+     * 
+     * @param limitationType The class type of the limitation to filter for (e.g., MaxWidthConstraint.class)
+     * @param <T> The type of limitation to retrieve
+     * @return A list of limitations of the specified type, or an empty list if none apply
+     */
+    public <T extends Limitation<?>> List<T> getAppliedLimitationsOfType(Class<T> limitationType) {
+        List<T> filteredLimitations = new ArrayList<>();
+        
+        for (Limitation<?> limitation : getAppliedLimitations()) {
+            if (limitationType.isInstance(limitation)) {
+                filteredLimitations.add(limitationType.cast(limitation));
+            }
+        }
+        
+        return filteredLimitations;
     }
 }

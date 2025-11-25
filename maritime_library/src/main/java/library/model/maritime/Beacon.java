@@ -12,8 +12,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Represents a Beacon (Bake/Molenfeuer) - Requirement F-3.9.
  * <p>
- * A Beacon is a fixed aid to navigation, typically placed at the head of a breakwater (Mole),
- * pier, or other prominent location to mark channels, harbor entrances, or dangers.
+ * A Beacon is a fixed aid to navigation (AtoN). Unlike buoys, beacons rely on a fixed foundation.
+ * They can function as Lateral, Cardinal, Leading Lines, or other marks.
  * </p>
  */
 @XmlRootElement
@@ -21,35 +21,37 @@ public class Beacon extends Obstacle {
 
     /**
      * The identifier/name of this beacon (e.g. "North Pier Beacon").
-     * Defined explicitly here as superclasses do not provide a name property.
      */
     @XmlElement
     private SimulationProperty<String> name;
 
     /**
-     * The lateral mark type (e.g., PORT_HAND, STARBOARD_HAND).
+     * The functional type of the beacon (e.g., LATERAL_PORT, CARDINAL_NORTH, LEADING_LINE).
      */
     @XmlElement
-    private SimulationProperty<LateralMarkType> markType;
+    private SimulationProperty<BeaconType> beaconType;
 
     /**
-     * The IALA region (A or B).
+     * The physical shape of the structure (e.g., TOWER, LATTICE, POLE).
+     */
+    @XmlElement
+    private SimulationProperty<BeaconShape> shape;
+
+    /**
+     * The color or pattern of the beacon.
+     */
+    @XmlElement
+    private SimulationProperty<BeaconColor> color;
+
+    /**
+     * The IALA region (A or B). Relevant for interpreting lateral colors.
      */
     @XmlElement
     private SimulationProperty<Region> region;
 
     /**
-     * The color of the beacon (derived from type and region).
+     * The light signal characteristics (can be null if unlit).
      */
-    @XmlElement
-    private SimulationProperty<LateralMarkColor> color;
-
-    /**
-     * The shape of the beacon (derived from type and region).
-     */
-    @XmlElement
-    private SimulationProperty<LateralMarkShape> shape;
-
     @XmlElement
     private LightSignal lightSignal;
 
@@ -63,82 +65,30 @@ public class Beacon extends Obstacle {
     /**
      * Creates a new Beacon.
      *
-     * @param nameStr The identifier of the beacon (e.g., "North Pier Beacon").
-     * @param position The fixed geographic position.
-     * @param geometry The physical shape (e.g., the tower geometry).
-     * @param markType The lateral type (e.g., PORT_HAND for the left side of the entrance).
-     * @param region The IALA region (A or B).
-     * @param lightSignal The light signal characteristics (can be null if not lit).
+     * @param nameStr     The identifier of the beacon.
+     * @param position    The fixed geographic position.
+     * @param geometry    The physical geometry/collision body.
+     * @param beaconType  The functional type (e.g. LATERAL_PORT).
+     * @param shape       The physical structure (e.g. TOWER).
+     * @param color       The color/pattern of the structure.
+     * @param region      The IALA region.
+     * @param lightSignal The light signal (optional).
      */
-    public Beacon(String nameStr, Position position, Geometry geometry, LateralMarkType markType, Region region, LightSignal lightSignal) {
+    public Beacon(String nameStr, Position position, Geometry geometry,
+                  BeaconType beaconType, BeaconShape shape, BeaconColor color,
+                  Region region, LightSignal lightSignal) {
+        // Beacons are fixed obstacles (isStatic = true)
         super(true, position, geometry, 0.0);
 
-        // Initialize the name property locally
         this.name = new SimulationProperty<>(false, false, NoUnit.get(), nameStr, "name");
-
-        // Set mark type
-        this.markType = new SimulationProperty<>(false, false, NoUnit.get(), markType, "markType");
-
-        // Set region
+        this.beaconType = new SimulationProperty<>(false, false, NoUnit.get(), beaconType, "beaconType");
+        this.shape = new SimulationProperty<>(false, false, NoUnit.get(), shape, "shape");
+        this.color = new SimulationProperty<>(false, false, NoUnit.get(), color, "color");
         this.region = new SimulationProperty<>(false, false, NoUnit.get(), region, "region");
-
-        // Derive and set color and shape based on IALA rules
-        applyStandardAppearance(markType, region);
-        
-        // Set the light signal
         this.lightSignal = lightSignal;
     }
 
-    /**
-     * Applies standard IALA colors and shapes based on type and region.
-     */
-    private void applyStandardAppearance(LateralMarkType type, Region region) {
-        LateralMarkColor derivedColor = LateralMarkColor.RED; // Default fallback
-        LateralMarkShape derivedShape = LateralMarkShape.CAN; // Default fallback
-
-        if (region == Region.REGION_A) {
-            switch (type) {
-                case PORT_HAND:
-                    derivedColor = LateralMarkColor.RED;
-                    derivedShape = LateralMarkShape.CAN;
-                    break;
-                case STARBOARD_HAND:
-                    derivedColor = LateralMarkColor.GREEN;
-                    derivedShape = LateralMarkShape.CONE;
-                    break;
-                case PREFERRED_CHANNEL_TO_STARBOARD:
-                    derivedColor = LateralMarkColor.RED_GREEN_RED;
-                    derivedShape = LateralMarkShape.CAN;
-                    break;
-                case PREFERRED_CHANNEL_TO_PORT:
-                    derivedColor = LateralMarkColor.GREEN_RED_GREEN;
-                    derivedShape = LateralMarkShape.CONE;
-                    break;
-            }
-        } else { // REGION_B
-            switch (type) {
-                case PORT_HAND:
-                    derivedColor = LateralMarkColor.GREEN;
-                    derivedShape = LateralMarkShape.CAN;
-                    break;
-                case STARBOARD_HAND:
-                    derivedColor = LateralMarkColor.RED;
-                    derivedShape = LateralMarkShape.CONE;
-                    break;
-                case PREFERRED_CHANNEL_TO_STARBOARD:
-                    derivedColor = LateralMarkColor.GREEN_RED_GREEN;
-                    derivedShape = LateralMarkShape.CAN;
-                    break;
-                case PREFERRED_CHANNEL_TO_PORT:
-                    derivedColor = LateralMarkColor.RED_GREEN_RED;
-                    derivedShape = LateralMarkShape.CONE;
-                    break;
-            }
-        }
-
-        this.color = new SimulationProperty<>(false, false, NoUnit.get(), derivedColor, "color");
-        this.shape = new SimulationProperty<>(false, false, NoUnit.get(), derivedShape, "shape");
-    }
+    // Getters and Setters
 
     public SimulationProperty<String> getName() {
         return name;
@@ -148,12 +98,28 @@ public class Beacon extends Obstacle {
         this.name = name;
     }
 
-    public SimulationProperty<LateralMarkType> getMarkType() {
-        return markType;
+    public SimulationProperty<BeaconType> getBeaconType() {
+        return beaconType;
     }
 
-    public void setMarkType(SimulationProperty<LateralMarkType> markType) {
-        this.markType = markType;
+    public void setBeaconType(SimulationProperty<BeaconType> beaconType) {
+        this.beaconType = beaconType;
+    }
+
+    public SimulationProperty<BeaconShape> getShape() {
+        return shape;
+    }
+
+    public void setShape(SimulationProperty<BeaconShape> shape) {
+        this.shape = shape;
+    }
+
+    public SimulationProperty<BeaconColor> getColor() {
+        return color;
+    }
+
+    public void setColor(SimulationProperty<BeaconColor> color) {
+        this.color = color;
     }
 
     public SimulationProperty<Region> getRegion() {
@@ -162,22 +128,6 @@ public class Beacon extends Obstacle {
 
     public void setRegion(SimulationProperty<Region> region) {
         this.region = region;
-    }
-
-    public SimulationProperty<LateralMarkColor> getColor() {
-        return color;
-    }
-
-    public void setColor(SimulationProperty<LateralMarkColor> color) {
-        this.color = color;
-    }
-
-    public SimulationProperty<LateralMarkShape> getShape() {
-        return shape;
-    }
-
-    public void setShape(SimulationProperty<LateralMarkShape> shape) {
-        this.shape = shape;
     }
 
     public LightSignal getLightSignal() {
