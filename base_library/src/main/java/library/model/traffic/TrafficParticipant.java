@@ -30,8 +30,12 @@ public class TrafficParticipant extends ActiveSimulationObject {
     private SimulationProperty<Double> weight;
 
     @XmlElement
+    private SimulationProperty<Double> inertia;
+
+    @XmlElement
     private SimulationProperty<Double> speed;
 
+    @XmlElement
     private SimulationProperty<Double> acceleration;
 
     @XmlElement
@@ -49,6 +53,10 @@ public class TrafficParticipant extends ActiveSimulationObject {
 
     public void setWeight(SimulationProperty<Double> weight) {
         this.weight = weight;
+    }
+
+    public void setInertia(SimulationProperty<Double> inertia) {
+        this.inertia = inertia;
     }
 
     public SimulationProperty<Double> getWidth() {
@@ -78,6 +86,7 @@ public class TrafficParticipant extends ActiveSimulationObject {
                               double rotation,
                               PossibleDomains assignedDomain,
                               Double weight,
+                              Double inertia,
                               Double speed,
                               Double acceleration,
                               Position origin,
@@ -86,6 +95,7 @@ public class TrafficParticipant extends ActiveSimulationObject {
         super(timeStepSize, physical, position, form, rotation);
         this.assignedDomain = new SimulationProperty<>(false, false, NoUnit.get(), assignedDomain, "assignedDomain");
         this.weight = new SimulationProperty<>(false, false, WeightUnit.TON, weight, "weight");
+        this.inertia = new SimulationProperty<>(false, false, NoUnit.get(), inertia, "inertia");
         this.speed = new SimulationProperty<>(false, false, SpeedUnit.KNOTS, speed, "speed");
         this.acceleration = new SimulationProperty<>(false, false, AccelerationUnit.METERSPERSECONDSSQUARED, acceleration, "acceleration");
         this.origin = new SimulationProperty<>(false, false, NoUnit.get(), origin, "origin");
@@ -100,6 +110,7 @@ public class TrafficParticipant extends ActiveSimulationObject {
                               SimulationProperty<Double> rotation,
                               SimulationProperty<PossibleDomains> assignedDomain,
                               SimulationProperty<Double> weight,
+                              SimulationProperty<Double> inertia,
                               SimulationProperty<Double> speed,
                               SimulationProperty<Double> acceleration,
                               SimulationProperty<Position> origin,
@@ -108,6 +119,7 @@ public class TrafficParticipant extends ActiveSimulationObject {
         super(timeStepSize, physical, position, form, rotation);
         this.assignedDomain = assignedDomain;
         this.weight = weight;
+        this.inertia = inertia;
         this.speed = speed;
         this.acceleration = acceleration;
         this.origin = origin;
@@ -121,6 +133,10 @@ public class TrafficParticipant extends ActiveSimulationObject {
 
     public SimulationProperty<Double> getWeight() {
         return weight;
+    }
+
+    public SimulationProperty<Double> getInertia() {
+        return inertia;
     }
 
     public SimulationProperty<Double> getSpeed() {

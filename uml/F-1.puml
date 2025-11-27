@@ -1,0 +1,43 @@
+@startuml
+
+package library.model.traffic {
+  class Sensor {
+  }
+}
+
+package library.model.maritime {
+  class GpsSensor {
+    + getGpsPosition() : Position
+  }
+
+  class AisSensor {
+    + getAisData() : List<AisData>
+  }
+
+  class AisData {
+    - mmsi : String
+    - imo : String
+    - vesselName : String
+    - callsign : String
+    - position : Position
+    - latitude : Double
+    - longitude : Double
+    - speedOverGround : Double
+    - courseOverGround : Double
+    - heading : Double
+    - length : Double
+    - width : Double
+    - draught : Double
+    - flag : String
+    - timestamp : long
+  }
+}
+
+' Beziehungen
+Sensor <|-- GpsSensor
+Sensor <|-- AisSensor
+
+' Abhängigkeit: AisSensor erzeugt AisData
+AisSensor .r.> AisData
+
+@enduml

@@ -3,6 +3,7 @@ package library.model.maritime;
 import library.model.simulation.Position;
 import library.model.simulation.SimulationComponent;
 import library.model.simulation.SimulationProperty;
+import library.model.simulation.units.AccelerationUnit;
 import library.model.simulation.units.DistanceUnit;
 import library.model.simulation.units.NoUnit;
 import library.model.simulation.units.RotationUnit;
@@ -52,6 +53,21 @@ public class Vessel extends TrafficParticipant {
     @XmlElement
     private SimulationProperty<Double> freeboard;
 
+    @XmlElement
+    private SimulationProperty<Double> turningCircle;
+
+    @XmlElement
+    private SimulationProperty<Double> stoppingDistance;
+
+    @XmlElement
+    private SimulationProperty<Double> accelerationDistance;
+
+    @XmlElement
+    private SimulationProperty<Double> maxAcceleration;
+
+    @XmlElement
+    private SimulationProperty<Double> maxDeceleration;
+
     @XmlTransient
     private GpsSensor gpsSensor;
 
@@ -70,6 +86,11 @@ public class Vessel extends TrafficParticipant {
         this.callsign = new SimulationProperty<>(NoUnit.get(), "", "callsign");
         this.loadCapacity = new SimulationProperty<>(WeightUnit.TON, 0.0, "loadCapacity");
         this.freeboard = new SimulationProperty<>(DistanceUnit.METER, 0.0, "freeboard");
+        this.turningCircle = new SimulationProperty<>(DistanceUnit.METER, 0.0, "turningCircle");
+        this.stoppingDistance = new SimulationProperty<>(DistanceUnit.METER, 0.0, "stoppingDistance");
+        this.accelerationDistance = new SimulationProperty<>(DistanceUnit.METER, 0.0, "accelerationDistance");
+        this.maxAcceleration = new SimulationProperty<>(AccelerationUnit.METERSPERSECONDSSQUARED, 0.0, "maxAcceleration");
+        this.maxDeceleration = new SimulationProperty<>(AccelerationUnit.METERSPERSECONDSSQUARED, 0.0, "maxDeceleration");
     }
 
     public Vessel(double timeStepSize,
@@ -79,6 +100,7 @@ public class Vessel extends TrafficParticipant {
                   boolean physical,
                   PossibleDomains assignedDomain,
                   double weight,
+                  double inertia,
                   double speed,
                   double acceleration,
                   Position origin,
@@ -93,8 +115,13 @@ public class Vessel extends TrafficParticipant {
                   double loadCapacity,
                   double length,
                   double width,
-                  double freeboard) {
-        super(timeStepSize, physical, position, form, rotation, assignedDomain, weight, speed, acceleration, origin, length, width);
+                  double freeboard,
+                  double turningCircle,
+                  double stoppingDistance,
+                  double accelerationDistance,
+                  double maxAcceleration,
+                  double maxDeceleration) {
+        super(timeStepSize, physical, position, form, rotation, assignedDomain, weight, inertia, speed, acceleration, origin, length, width);
         this.course = new SimulationProperty<>(RotationUnit.DEGREE, course, "course");
         this.draught = new SimulationProperty<>(DistanceUnit.METER, draught, "draught");
         this.homeHarbour = new SimulationProperty<>(NoUnit.get(), homeHarbour, "homeHarbour");
@@ -105,6 +132,11 @@ public class Vessel extends TrafficParticipant {
         this.callsign = new SimulationProperty<>(NoUnit.get(), callsign, "callsign");
         this.loadCapacity = new SimulationProperty<>(WeightUnit.TON, loadCapacity, "loadCapacity");
         this.freeboard = new SimulationProperty<>(DistanceUnit.METER, freeboard, "freeboard");
+        this.turningCircle = new SimulationProperty<>(DistanceUnit.METER, turningCircle, "turningCircle");
+        this.stoppingDistance = new SimulationProperty<>(DistanceUnit.METER, stoppingDistance, "stoppingDistance");
+        this.accelerationDistance = new SimulationProperty<>(DistanceUnit.METER, accelerationDistance, "accelerationDistance");
+        this.maxAcceleration = new SimulationProperty<>(AccelerationUnit.METERSPERSECONDSSQUARED, maxAcceleration, "maxAcceleration");
+        this.maxDeceleration = new SimulationProperty<>(AccelerationUnit.METERSPERSECONDSSQUARED, maxDeceleration, "maxDeceleration");
     }
 
     public Vessel(double timeStepSize,
@@ -114,6 +146,7 @@ public class Vessel extends TrafficParticipant {
                   SimulationProperty<Boolean> physical,
                   SimulationProperty<PossibleDomains> assignedDomain,
                   SimulationProperty<Double> weight,
+                  SimulationProperty<Double> inertia,
                   SimulationProperty<Double> speed,
                   SimulationProperty<Double> acceleration,
                   SimulationProperty<Position> origin,
@@ -128,8 +161,13 @@ public class Vessel extends TrafficParticipant {
                   SimulationProperty<Double> loadCapacity,
                   SimulationProperty<Double> length,
                   SimulationProperty<Double> width,
-                  SimulationProperty<Double> freeboard) {
-        super(timeStepSize, physical, position, form, rotation, assignedDomain, weight, speed, acceleration, origin, length, width);
+                  SimulationProperty<Double> freeboard,
+                  SimulationProperty<Double> turningCircle,
+                  SimulationProperty<Double> stoppingDistance,
+                  SimulationProperty<Double> accelerationDistance,
+                  SimulationProperty<Double> maxAcceleration,
+                  SimulationProperty<Double> maxDeceleration) {
+        super(timeStepSize, physical, position, form, rotation, assignedDomain, weight, inertia, speed, acceleration, origin, length, width);
         this.course = course;
         this.draught = draught;
         this.homeHarbour = homeHarbour;
@@ -140,6 +178,11 @@ public class Vessel extends TrafficParticipant {
         this.callsign = callsign;
         this.loadCapacity = loadCapacity;
         this.freeboard = freeboard;
+        this.turningCircle = turningCircle;
+        this.stoppingDistance = stoppingDistance;
+        this.accelerationDistance = accelerationDistance;
+        this.maxAcceleration = maxAcceleration;
+        this.maxDeceleration = maxDeceleration;
     }
 
     public SimulationProperty<Double> getFreeboard() {
@@ -220,6 +263,46 @@ public class Vessel extends TrafficParticipant {
 
     public void setLoadCapacity(SimulationProperty<Double> loadCapacity) {
         this.loadCapacity = loadCapacity;
+    }
+
+    public SimulationProperty<Double> getTurningCircle() {
+        return turningCircle;
+    }
+
+    public void setTurningCircle(SimulationProperty<Double> turningCircle) {
+        this.turningCircle = turningCircle;
+    }
+
+    public SimulationProperty<Double> getStoppingDistance() {
+        return stoppingDistance;
+    }
+
+    public void setStoppingDistance(SimulationProperty<Double> stoppingDistance) {
+        this.stoppingDistance = stoppingDistance;
+    }
+
+    public SimulationProperty<Double> getAccelerationDistance() {
+        return accelerationDistance;
+    }
+
+    public void setAccelerationDistance(SimulationProperty<Double> accelerationDistance) {
+        this.accelerationDistance = accelerationDistance;
+    }
+
+    public SimulationProperty<Double> getMaxAcceleration() {
+        return maxAcceleration;
+    }
+
+    public void setMaxAcceleration(SimulationProperty<Double> maxAcceleration) {
+        this.maxAcceleration = maxAcceleration;
+    }
+
+    public SimulationProperty<Double> getMaxDeceleration() {
+        return maxDeceleration;
+    }
+
+    public void setMaxDeceleration(SimulationProperty<Double> maxDeceleration) {
+        this.maxDeceleration = maxDeceleration;
     }
 
     public GpsSensor getGpsSensor() {

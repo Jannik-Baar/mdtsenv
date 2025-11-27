@@ -20,12 +20,12 @@ public class PassengerShip extends Vessel {
     }
 
     public PassengerShip(boolean physical, Position position, Geometry form, double rotation, double timeStepSize,
-                         PossibleDomains assignedDomain, Double weight, Double speed, Double acceleration,
+                         PossibleDomains assignedDomain, Double weight, Double inertia, Double speed, Double acceleration,
                          Position origin, Double course, Double draught, String homeHarbour,
                          String vesselName, String flag, String imo, String mmsi, String callsign, Double loadCapacity,
                          int passengerCapacity, double length, double width) {
-        super(timeStepSize, position, form, rotation, physical, assignedDomain, weight, speed, acceleration, origin,
-              course, draught, homeHarbour, vesselName, flag, imo, mmsi, callsign, loadCapacity, length, width);
+        super(timeStepSize, position, form, rotation, physical, assignedDomain, weight, inertia, speed, acceleration, origin,
+              course, draught, homeHarbour, vesselName, flag, imo, mmsi, callsign, loadCapacity, length, width, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
         this.passengerCapacity = new SimulationProperty<>(NoUnit.get(), passengerCapacity, "passengerCapacity");
     }
 
@@ -36,6 +36,7 @@ public class PassengerShip extends Vessel {
                          SimulationProperty<Boolean> physical,
                          SimulationProperty<PossibleDomains> assignedDomain,
                          SimulationProperty<Double> weight,
+                         SimulationProperty<Double> inertia,
                          SimulationProperty<Double> speed,
                          SimulationProperty<Double> acceleration,
                          SimulationProperty<Position> origin,
@@ -51,8 +52,14 @@ public class PassengerShip extends Vessel {
                          SimulationProperty<Integer> passengerCapacity,
                          SimulationProperty<Double> length,
                          SimulationProperty<Double> width) {
-        super(timeStepSize, position, form, rotation, physical, assignedDomain, weight, speed, acceleration, origin,
-              course, draught, homeHarbour, vesselName, flag, imo, mmsi, callSign, loadCapacity, length, width);
+        super(timeStepSize, position, form, rotation, physical, assignedDomain, weight, inertia, speed, acceleration, origin,
+              course, draught, homeHarbour, vesselName, flag, imo, mmsi, callSign, loadCapacity, length, width, 
+              new SimulationProperty<>(library.model.simulation.units.DistanceUnit.METER, 0.0, "freeboard"),
+              new SimulationProperty<>(library.model.simulation.units.DistanceUnit.METER, 0.0, "turningCircle"),
+              new SimulationProperty<>(library.model.simulation.units.DistanceUnit.METER, 0.0, "stoppingDistance"),
+              new SimulationProperty<>(library.model.simulation.units.DistanceUnit.METER, 0.0, "accelerationDistance"),
+              new SimulationProperty<>(library.model.simulation.units.AccelerationUnit.METERSPERSECONDSSQUARED, 0.0, "maxAcceleration"),
+              new SimulationProperty<>(library.model.simulation.units.AccelerationUnit.METERSPERSECONDSSQUARED, 0.0, "maxDeceleration"));
         this.passengerCapacity = passengerCapacity;
     }
 

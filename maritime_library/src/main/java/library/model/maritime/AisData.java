@@ -113,8 +113,6 @@ public class AisData implements Serializable {
         return (property != null) ? property.getValue() : null;
     }
 
-    // Getters and Setters
-
     public String getMmsi() {
         return mmsi;
     }
@@ -233,59 +231,6 @@ public class AisData implements Serializable {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
-    }
-
-    /**
-     * Calculates the distance to another AIS target in meters.
-     * Uses Haversine formula for great-circle distance.
-     * 
-     * @param other The other AIS target
-     * @return Distance in meters, or -1 if position data is missing
-     */
-    public double getDistanceTo(AisData other) {
-        if (this.latitude == null || this.longitude == null ||
-            other.latitude == null || other.longitude == null) {
-            return -1;
-        }
-
-        final double R = 6371000; // Earth's radius in meters
-
-        double lat1Rad = Math.toRadians(this.latitude);
-        double lat2Rad = Math.toRadians(other.latitude);
-        double deltaLat = Math.toRadians(other.latitude - this.latitude);
-        double deltaLon = Math.toRadians(other.longitude - this.longitude);
-
-        double a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-                   Math.cos(lat1Rad) * Math.cos(lat2Rad) *
-                   Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
-
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-        return R * c;
-    }
-
-    /**
-     * Calculates the bearing to another AIS target in degrees (0-360).
-     * 
-     * @param other The other AIS target
-     * @return Bearing in degrees, or -1 if position data is missing
-     */
-    public double getBearingTo(AisData other) {
-        if (this.latitude == null || this.longitude == null ||
-            other.latitude == null || other.longitude == null) {
-            return -1;
-        }
-
-        double lat1Rad = Math.toRadians(this.latitude);
-        double lat2Rad = Math.toRadians(other.latitude);
-        double deltaLon = Math.toRadians(other.longitude - this.longitude);
-
-        double y = Math.sin(deltaLon) * Math.cos(lat2Rad);
-        double x = Math.cos(lat1Rad) * Math.sin(lat2Rad) -
-                   Math.sin(lat1Rad) * Math.cos(lat2Rad) * Math.cos(deltaLon);
-
-        double bearing = Math.toDegrees(Math.atan2(y, x));
-        return (bearing + 360) % 360;
     }
 
     @Override
