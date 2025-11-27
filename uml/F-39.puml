@@ -1,0 +1,92 @@
+@startuml
+
+package library.model.traffic {
+  class Obstacle {
+  }
+}
+
+package library.model.maritime {
+
+  enum Region {
+    REGION_A
+    REGION_B
+  }
+
+  enum BeaconType {
+    LATERAL_PORT
+    LATERAL_STARBOARD
+    PREFERRED_CHANNEL_TO_STARBOARD
+    PREFERRED_CHANNEL_TO_PORT
+    CARDINAL_NORTH
+    CARDINAL_EAST
+    CARDINAL_SOUTH
+    CARDINAL_WEST
+    ISOLATED_DANGER
+    SAFE_WATER
+    SPECIAL
+    EMERGENCY_WRECK
+    LEADING_LINE
+    SECTOR_LIGHT
+    GENERAL_WARNING
+    NOTICE
+  }
+
+  enum BeaconShape {
+    POLE
+    PERCH
+    PILE
+    LATTICE
+    TOWER
+    CAIRN
+    PANEL
+    STRUCTURE
+    STAKE
+  }
+
+  enum BeaconColor {
+    RED
+    GREEN
+    YELLOW
+    WHITE
+    BLACK
+    ORANGE
+    GREY
+    RED_GREEN_BAND
+    GREEN_RED_BAND
+    BLACK_YELLOW_BANDS
+    RED_WHITE_STRIPES
+    YELLOW_BLACK_STRIPES
+    BLUE_YELLOW_STRIPES
+    RED_WHITE_HORIZONTAL
+    BLACK_WHITE_HORIZONTAL
+  }
+
+  class LightSignal {
+    - pattern : SimulationProperty<LighthousePattern>
+    - period : SimulationProperty<Double>
+    - nominalRange : SimulationProperty<Double>
+    - color : SimulationProperty<LightColor>
+
+  }
+
+  class Beacon {
+    - name : SimulationProperty<String>
+    - beaconType : SimulationProperty<BeaconType>
+    - shape : SimulationProperty<BeaconShape>
+    - color : SimulationProperty<BeaconColor>
+    - region : SimulationProperty<Region>
+    - lightSignal : LightSignal
+
+  }
+
+  ' Beziehungen
+  Beacon -up-|> Obstacle
+
+  Beacon o-- BeaconType
+  Beacon o-- BeaconShape
+  Beacon o-- BeaconColor
+  Beacon o-- Region
+  Beacon o-r- LightSignal
+}
+
+@enduml

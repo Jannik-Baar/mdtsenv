@@ -1,0 +1,79 @@
+@startuml
+
+package library.model.limitations {
+  class "Restriction<T>" as Restriction {
+  }
+}
+
+package library.model.traffic {
+  class Infrastructure {
+    - imposedRestrictions : ArrayList<Restriction>
+    + addRestriction(Restriction) : Infrastructure
+  }
+
+  class "TrafficRestriction<T>" as TrafficRestriction {
+  }
+}
+
+package library.model.maritime {
+
+  enum TrafficSeparationSchemeZoneType {
+    TRAFFIC_LANE
+    SEPARATION_ZONE
+    SEPARATION_LINE
+    ROUNDABOUT
+    INSHORE_TRAFFIC_ZONE
+    PRECAUTIONARY_AREA
+    AREA_TO_BE_AVOIDED
+    NO_ANCHORING_AREA
+  }
+
+  enum TrafficSeparationSchemeTrafficDirection {
+    NORTH_TO_SOUTH
+    SOUTH_TO_NORTH
+    EAST_TO_WEST
+    WEST_TO_EAST
+    CLOCKWISE
+    COUNTER_CLOCKWISE
+    BIDIRECTIONAL
+    NO_RESTRICTION
+    CUSTOM_BEARING
+  }
+
+  class TrafficSeparationScheme {
+    - zoneType : SimulationProperty<TrafficSeparationSchemeZoneType>
+    - trafficDirection : SimulationProperty<TrafficSeparationSchemeTrafficDirection>
+    - name : SimulationProperty<String>
+    - customBearing : SimulationProperty<Double>
+
+    + isHeadingCompliant(double, double) : boolean
+    + isEntryProhibited() : boolean
+  }
+
+  ' Rotation Restrictions
+  class ExactRotationRestriction {
+  }
+
+  class MaxRotationRestriction {
+  }
+
+  class MinRotationRestriction {
+  }
+
+  ' Beziehungen
+  TrafficSeparationScheme -up-|> Infrastructure
+
+  TrafficSeparationScheme o-- TrafficSeparationSchemeZoneType
+  TrafficSeparationScheme o-- TrafficSeparationSchemeTrafficDirection
+
+  Restriction <|-- TrafficRestriction
+  TrafficRestriction <|-- ExactRotationRestriction
+  TrafficRestriction <|-- MaxRotationRestriction
+  TrafficRestriction <|-- MinRotationRestriction
+
+  ' Infrastruktur kann Restrictions haben (Composition/Aggregation)
+  Infrastructure o-- Restriction
+
+}
+
+@enduml

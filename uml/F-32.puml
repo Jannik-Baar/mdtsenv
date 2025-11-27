@@ -1,0 +1,45 @@
+@startuml
+
+package library.model.traffic {
+  class Obstacle {
+  }
+}
+
+package library.model.maritime {
+
+  enum SafeWaterMarkColor {
+    RED_WHITE_VERTICAL_STRIPES
+  }
+
+  enum SafeWaterMarkShape {
+    SPHERICAL
+    PILLAR
+    SPAR
+  }
+
+  class LightSignal {
+      - pattern : SimulationProperty<LighthousePattern>
+      - period : SimulationProperty<Double>
+      - nominalRange : SimulationProperty<Double>
+      - color : SimulationProperty<LightColor>
+  }
+
+  class SafeWaterMark {
+    - name : SimulationProperty<String>
+    - color : SimulationProperty<SafeWaterMarkColor>
+    - shape : SimulationProperty<SafeWaterMarkShape>
+    - marking : SimulationProperty<String>
+    - lightSignal : LightSignal
+
+    + isLit() : boolean
+  }
+
+  ' Beziehungen
+  SafeWaterMark -up-|> Obstacle
+
+  SafeWaterMark o-- SafeWaterMarkColor
+  SafeWaterMark o-- SafeWaterMarkShape
+  SafeWaterMark o-r- LightSignal
+}
+
+@enduml

@@ -1,0 +1,33 @@
+@startuml
+
+package library.model.traffic {
+  class Infrastructure {
+  }
+}
+
+package library.model.maritime {
+
+  class Beacon
+  class LateralMark
+  class Lighthouse
+  class SafeWaterMark
+
+  class Channel {
+    - beacons : ArrayList<Beacon>
+    - lateralMarks : ArrayList<LateralMark>
+    - lighthouses : ArrayList<Lighthouse>
+    - safeWaterMarks : ArrayList<SafeWaterMark>
+    - preferred : SimulationProperty<Boolean>
+  }
+
+  ' Beziehungen
+  Channel -up-|> Infrastructure
+
+  ' Aggregationen (Channel enthält Listen dieser Objekte)
+  Channel o-- Beacon
+  Channel o-- LateralMark
+  Channel o-- Lighthouse
+  Channel o-- SafeWaterMark
+}
+
+@enduml

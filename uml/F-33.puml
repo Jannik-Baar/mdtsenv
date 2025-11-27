@@ -1,82 +1,65 @@
 @startuml
 
-title Realisierung Anforderung F-3.3: Lateralsystem inklusive Restriktionen
-
-' --- Basis-Klassen der Bibliothek ---
-
-' Abstrakte Basisklasse für Einschränkungen
-class "Restriction<T>" as Restriction {
+package library.model.traffic {
+  class Obstacle {
+  }
 }
 
-' Zwischenklasse für Verkehrsrestriktionen
-class "TrafficRestriction<T>" as TrafficRestriction {
-}
+package library.model.maritime {
 
-' Infrastruktur als Basis für Objekte
-class Infrastructure {
-    - imposedRestrictions : ArrayList<Restriction<?>>
-    + addRestriction(restriction: Restriction<?>)
-    + getImposedRestrictions()
-}
+  enum Region {
+    REGION_A
+    REGION_B
+  }
 
-' --- Kernklassen für F-3.3 (Lateral System) ---
-
-' Die konkrete Restriktion für Lateralzeichen
-class LateralMarkRestriction {
-    - lateralMark: LateralMark
-
-    + LateralMarkRestriction(lateralMark: LateralMark)
-    + getRegion(): SimulationProperty<Region>
-    + getMarkType(): SimulationProperty<LateralMarkType>
-    + getColor(): SimulationProperty<LateralMarkColor>
-}
-
-' Das Lateralzeichen selbst
-class LateralMark {
-    - markType: SimulationProperty<LateralMarkType>
-    - region: SimulationProperty<Region>
-    - color: SimulationProperty<LateralMarkColor>
-    - shape: SimulationProperty<LateralMarkShape>
-
-    + applyStandardAppearance(...)
-}
-
-' --- Enums und Typen ---
-
-enum LateralMarkType {
+  enum LateralMarkType {
     PORT_HAND
     STARBOARD_HAND
     PREFERRED_CHANNEL_TO_STARBOARD
     PREFERRED_CHANNEL_TO_PORT
+  }
+
+  enum LateralMarkColor {
+    RED
+    GREEN
+    RED_GREEN_RED
+    GREEN_RED_GREEN
+  }
+
+  enum LateralMarkShape {
+    CAN
+    CONE
+    PILLAR
+    SPAR
+  }
+
+  class LightSignal {
+      - pattern : SimulationProperty<LighthousePattern>
+      - period : SimulationProperty<Double>
+      - nominalRange : SimulationProperty<Double>
+      - color : SimulationProperty<LightColor>
+  }
+
+  class LateralMark {
+    - name : SimulationProperty<String>
+    - markType : SimulationProperty<LateralMarkType>
+    - region : SimulationProperty<Region>
+    - number : SimulationProperty<String>
+    - color : SimulationProperty<LateralMarkColor>
+    - shape : SimulationProperty<LateralMarkShape>
+    - lightSignal : LightSignal
+
+    - applyStandardAppearance(LateralMarkType, Region, LateralMarkShape)
+  }
+
+  ' Beziehungen
+  LateralMark -up-|> library.model.traffic.Obstacle
+
+  LateralMark o-- LateralMarkType
+  LateralMark o-- Region
+  LateralMark o-- LateralMarkColor
+  LateralMark o-- LateralMarkShape
+  LateralMark o-r- LightSignal
 }
-
-enum Region {
-    REGION_A
-    REGION_B
-}
-
-' --- Beziehungen ---
-
-' Vererbungshierarchien
-Restriction <|-- TrafficRestriction
-TrafficRestriction <|-- LateralMarkRestriction
-Infrastructure <|-- LateralMark
-
-' Infrastruktur besitzt eine Liste von Restriktionen
-Infrastructure "1" o-- "0..*" Restriction : imposedRestrictions >
-
-' Die LateralMarkRestriction referenziert das konkrete Zeichen
-LateralMarkRestriction --> LateralMark : definiert Regeln basierend auf >
-
-' Nutzung der Enums
-LateralMark *-- LateralMarkType
-LateralMark *-- Region
-LateralMarkRestriction ..> LateralMarkType : nutzt (als Typ T)
-
-note right of LateralMarkRestriction
-  Wrapper-Klasse für F-3.3:
-  Delegiert Anfragen (z.B. Region, Farbe)
-  an das enthaltene <b>lateralMark</b>-Objekt.
-end note
 
 @enduml

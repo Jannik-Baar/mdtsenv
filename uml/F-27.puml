@@ -1,0 +1,20 @@
+@startuml
+
+package library.model.traffic {
+  class Infrastructure {
+  }
+}
+
+package library.model.maritime {
+
+  class Anchorage {
+    - maxCapacity : SimulationProperty<Integer>
+    - usedCapacity : SimulationProperty<Integer>
+  }
+
+  ' Beziehungen
+  Anchorage -l-|> Infrastructure
+
+}
+
+@enduml

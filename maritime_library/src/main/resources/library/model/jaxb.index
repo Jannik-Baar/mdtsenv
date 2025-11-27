@@ -1,4 +1,5 @@
 maritime.AisActor
+maritime.AisData
 maritime.AisSensor
 maritime.Anchorage
 maritime.Beacon

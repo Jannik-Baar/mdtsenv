@@ -1,0 +1,39 @@
+@startuml
+
+package library.model.traffic {
+  class Infrastructure {
+  }
+}
+
+package library.model.maritime {
+
+  enum RestrictedAreaType {
+    MILITARY_ZONE
+    NATURE_CONSERVATION
+    CONSTRUCTION_ZONE
+    HAZARDOUS_CARGO_ZONE
+    ARCHAEOLOGICAL_SITE
+    ENVIRONMENTAL_PROTECTION
+    SECURITY_ZONE
+    ANCHORAGE_PROHIBITED
+    FISHING_PROHIBITED
+    GENERAL_RESTRICTION
+  }
+
+  class RestrictedArea {
+    - restrictionType : SimulationProperty<RestrictedAreaType>
+    - name : SimulationProperty<String>
+    - reason : SimulationProperty<String>
+    - isPermanent : SimulationProperty<Boolean>
+
+    + isEntryProhibited() : boolean
+    + isAnchoringProhibited() : boolean
+    + isFishingProhibited() : boolean
+    + getRestrictionReason() : String
+  }
+
+  RestrictedArea -up-|> Infrastructure
+  RestrictedArea o-r- RestrictedAreaType
+}
+
+@enduml

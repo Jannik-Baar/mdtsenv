@@ -1,0 +1,61 @@
+@startuml
+
+package library.model.traffic {
+  class Obstacle {
+  }
+}
+
+package library.model.maritime {
+
+  enum LighthousePattern {
+    FIXED
+    FLASHING
+    QUICK_FLASHING
+    VERY_QUICK_FLASHING
+    LONG_FLASHING
+    OCCULTING
+    ISOPHASE
+    MORSE_CODE
+    GROUP_FLASHING
+    ALTERNATING
+    SECTORED
+  }
+
+  enum LightColor {
+    WHITE
+    RED
+    GREEN
+    YELLOW
+    WHITE_RED_ALTERNATING
+    WHITE_GREEN_ALTERNATING
+    RED_GREEN_ALTERNATING
+  }
+
+  class LightSignal {
+    - pattern : SimulationProperty<LighthousePattern>
+    - period : SimulationProperty<Double>
+    - nominalRange : SimulationProperty<Double>
+    - color : SimulationProperty<LightColor>
+
+  }
+
+  class Lighthouse {
+    - name : SimulationProperty<String>
+    - height : SimulationProperty<Double>
+    - lightSignal : LightSignal
+    - focalHeight : SimulationProperty<Double>
+    - isActive : SimulationProperty<Boolean>
+
+    + calculateGeographicRange() : double
+    + getEffectiveRange() : double
+  }
+
+  ' Beziehungen
+  Lighthouse -up-|> Obstacle
+
+  Lighthouse *-r- LightSignal
+  LightSignal o-- LighthousePattern
+  LightSignal o-- LightColor
+}
+
+@enduml

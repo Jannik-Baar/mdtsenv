@@ -55,6 +55,9 @@ public class Vessel extends TrafficParticipant {
     @XmlTransient
     private GpsSensor gpsSensor;
 
+    @XmlTransient
+    private AisSensor aisSensor;
+
     public Vessel() {
         super();
         this.course = new SimulationProperty<>(RotationUnit.DEGREE, 0.0, "course");
@@ -231,6 +234,21 @@ public class Vessel extends TrafficParticipant {
         this.gpsSensor = gpsSensor;
         if (gpsSensor != null) {
             attachSensor(gpsSensor, "gpsSensor");
+        }
+    }
+
+    public AisSensor getAisSensor() {
+        if (aisSensor == null) {
+            aisSensor = findComponent(AisSensor.class).orElse(null);
+        }
+        return aisSensor;
+    }
+
+    public void setAisSensor(AisSensor aisSensor) {
+        this.getComponents().removeIf(c -> c instanceof AisSensor);
+        this.aisSensor = aisSensor;
+        if (aisSensor != null) {
+            attachSensor(aisSensor, "aisSensor");
         }
     }
     

@@ -6,6 +6,7 @@ import library.model.simulation.objects.SimulationObject;
 import library.model.traffic.Infrastructure;
 import library.model.traffic.Obstacle;
 import library.model.traffic.PossibleDomains;
+import library.model.traffic.TrafficParticipant;
 import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.io.ParseException;
 
@@ -34,16 +35,21 @@ public class MapDataProvider {
 
     HashMap<Geometry, Infrastructure> envelopMap;
     HashMap<Geometry, Obstacle> obstacleMap;
+    List<TrafficParticipant> trafficParticipants;
 
     public MapDataProvider(ScenarioDTO scenario) {
         envelopMap = new HashMap<>();
         obstacleMap = new HashMap<>();
+        trafficParticipants = new ArrayList<>();
         for (SimulationObject simulationObject : scenario.getSimulationObjects()) {
             if (simulationObject instanceof Infrastructure) {
                 envelopMap.put(simulationObject.getForm().getValue().getEnvelope(), (Infrastructure) simulationObject);
             }
             if (simulationObject instanceof Obstacle) {
                 obstacleMap.put(simulationObject.getForm().getValue().getEnvelope(), (Obstacle) simulationObject);
+            }
+            if (simulationObject instanceof TrafficParticipant) {
+                trafficParticipants.add((TrafficParticipant) simulationObject);
             }
         }
     }
@@ -113,5 +119,9 @@ public class MapDataProvider {
 
     public List<Obstacle> getAllObstacles() {
         return new ArrayList<>(obstacleMap.values());
+    }
+
+    public List<TrafficParticipant> getAllTrafficParticipants() {
+        return new ArrayList<>(trafficParticipants);
     }
 }

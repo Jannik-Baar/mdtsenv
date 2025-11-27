@@ -1,0 +1,32 @@
+@startuml
+
+package library.model.limitations {
+  class "Constraint<T>" as Constraint {
+  }
+}
+
+package library.model.traffic {
+  class "TrafficConstraint<T>" as TrafficConstraint {
+  }
+}
+
+package library.model.maritime {
+
+  class MaxWidthConstraint {
+  }
+
+  class MaxDraughtConstraint {
+  }
+
+  class MaxFreeboardConstraint {
+  }
+}
+
+' Beziehungen
+Constraint <|-- TrafficConstraint
+
+TrafficConstraint <|-- MaxWidthConstraint
+TrafficConstraint <|-- MaxDraughtConstraint
+TrafficConstraint <|-- MaxFreeboardConstraint
+
+@enduml
