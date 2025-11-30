@@ -3,13 +3,17 @@ package library.model.maritime;
 import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.traffic.Obstacle;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * A basic Buoy SimulationObject Obstacle
+ * A basic Buoy obstacle.
  */
+@Getter
+@Setter
 @XmlRootElement
 public class Buoy extends Obstacle {
 

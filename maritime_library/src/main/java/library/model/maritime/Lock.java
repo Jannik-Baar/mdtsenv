@@ -6,6 +6,8 @@ import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.TimeUnit;
 import library.model.traffic.Infrastructure;
 import library.model.traffic.PossibleDomains;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -13,17 +15,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
 /**
- * A lock
+ * A lock that connects waterways at different water levels.
  */
+@Getter
+@Setter
 @XmlRootElement
 public class Lock extends Infrastructure {
 
+    /** The lock's behavior */
     @XmlElement
     private Behaviour behaviour;
 
+    /** Time required to fill the lock in seconds */
     @XmlElement
     private SimulationProperty<Double> timeToFill;
 
+    /** Time required to drain the lock in seconds */
     @XmlElement
     private SimulationProperty<Double> timeToDrain;
 
@@ -76,13 +83,4 @@ public class Lock extends Infrastructure {
         this.timeToFill = timeToFill;
         this.timeToDrain = timeToDrain;
     }
-
-    public SimulationProperty<Double> getTimeToFill() {
-        return timeToFill;
-    }
-
-    public SimulationProperty<Double> getTimeToDrain() {
-        return timeToDrain;
-    }
-
 }

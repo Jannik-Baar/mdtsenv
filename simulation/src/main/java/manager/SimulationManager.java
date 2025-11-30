@@ -100,7 +100,7 @@ public class SimulationManager {
 
     public void run() {
         printProgramInfo();
-        boolean scenarioParameterExists = true;
+        boolean scenarioParameterExsists = true;
 
         if (startScenarioPath != null && isPathFile(startScenarioPath)) {
             scenarioPathList.add(startScenarioPath);

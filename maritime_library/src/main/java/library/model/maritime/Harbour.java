@@ -5,6 +5,8 @@ import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.NoUnit;
 import library.model.traffic.Infrastructure;
 import library.model.traffic.PossibleDomains;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -14,12 +16,16 @@ import java.util.ArrayList;
 /**
  * A Harbour Infrastructure Object.
  */
+@Getter
+@Setter
 @XmlRootElement
 public class Harbour extends Infrastructure {
 
+    /** Maximum number of vessels that can be in the harbour */
     @XmlElement
     private SimulationProperty<Integer> maxCapacity;
 
+    /** Current number of vessels in the harbour */
     @XmlElement
     private SimulationProperty<Integer> usedCapacity;
 
@@ -71,13 +77,5 @@ public class Harbour extends Infrastructure {
         super(physical, position, form, rotation, possibleDomains);
         this.maxCapacity = maxCapacity;
         this.usedCapacity = usedCapacity;
-    }
-
-    public SimulationProperty<Integer> getMaxCapacity() {
-        return maxCapacity;
-    }
-
-    public SimulationProperty<Integer> getUsedCapacity() {
-        return usedCapacity;
     }
 }

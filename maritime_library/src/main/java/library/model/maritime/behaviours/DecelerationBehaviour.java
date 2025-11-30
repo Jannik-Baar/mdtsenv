@@ -4,6 +4,8 @@ import library.model.maritime.Vessel;
 import library.model.simulation.Behaviour;
 import library.model.simulation.Goal;
 import library.model.simulation.objects.SimulationObject;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 import java.util.List;
@@ -24,10 +26,11 @@ public class DecelerationBehaviour extends Behaviour {
     private final static Logger LOGGER = Logger.getLogger(DecelerationBehaviour.class.getName());
 
     private Vessel vessel;
+    @Setter
+    @Getter
     private double targetSpeed; // Target speed in m/s (can be 0 for full stop)
-    
-    // Earth Radius in meters
-    final double r = 6371 * 1000;
+
+    final double r = 6371 * 1000; // Earth Radius in meters
 
     public DecelerationBehaviour() {
     }
@@ -56,34 +59,26 @@ public class DecelerationBehaviour extends Behaviour {
         double currentSpeed = vessel.getSpeed().getValue();
         double maxDeceleration = vessel.getMaxDeceleration().getValue();
         double inertia = vessel.getInertia().getValue();
-        
-        // Calculate effective deceleration considering inertia
-        // Higher inertia (closer to 1) reduces the effective deceleration
-        // This means vessels with high inertia take longer to slow down
+
         double inertiaFactor = 1.0 - inertia;
         double effectiveDeceleration = maxDeceleration * inertiaFactor;
-        
-        // Calculate speed change for this timestep (negative for deceleration)
+
         double speedChange = effectiveDeceleration * timePassed;
-        
-        // Calculate new speed (cannot go below target speed or below 0)
+
         double newSpeed = Math.max(currentSpeed - speedChange, targetSpeed);
-        newSpeed = Math.max(newSpeed, 0.0); // Ensure speed doesn't go negative
-        
-        // Use average speed for distance calculation to be more accurate
+        newSpeed = Math.max(newSpeed, 0.0);
+
         double averageSpeed = (currentSpeed + newSpeed) / 2.0;
         double distance = averageSpeed * timePassed;
-        
-        // Calculate new position using great circle navigation
+
         double latOld = vessel.getPosition().getValue().getLatitude().getValue();
         double lonOld = vessel.getPosition().getValue().getLongitude().getValue();
         double bearing = vessel.getRotation().getValue();
-        
-        // Only calculate new position if vessel is still moving
+
         double latNew = latOld;
         double lonNew = lonOld;
         
-        if (distance > 0.0001) { // Only update position if meaningful distance
+        if (distance > 0.0001) {
             latNew = Math.asin(Math.sin(Math.toRadians(latOld))
                     * Math.cos(distance / r)
                     + Math.cos(Math.toRadians(latOld)) * Math.sin(distance / r) * Math.cos(Math.toRadians(bearing)));
@@ -103,11 +98,9 @@ public class DecelerationBehaviour extends Behaviour {
             latNew = Math.toDegrees(latNew);
             lonNew = Math.toDegrees(lonNew);
         }
-        
-        // Calculate actual deceleration achieved (negative value)
+
         double actualAcceleration = -(currentSpeed - newSpeed) / timePassed;
 
-        // Update values
         HashMap<String, Object> valuesToUpdate = new HashMap<>();
         valuesToUpdate.put(vessel.getPosition().getValue().getLongitude().getId(), lonNew);
         valuesToUpdate.put(vessel.getPosition().getValue().getLatitude().getId(), latNew);
@@ -136,13 +129,4 @@ public class DecelerationBehaviour extends Behaviour {
             this.vessel = (Vessel) simulationObject;
         }
     }
-
-    public double getTargetSpeed() {
-        return targetSpeed;
-    }
-
-    public void setTargetSpeed(double targetSpeed) {
-        this.targetSpeed = targetSpeed;
-    }
 }
-

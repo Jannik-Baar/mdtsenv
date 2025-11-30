@@ -4,6 +4,8 @@ import library.model.simulation.Position;
 import library.model.simulation.SimulationComponent;
 import library.model.simulation.objects.SimulationObject;
 import library.model.traffic.Sensor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -12,6 +14,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 /**
  * Sensor that exposes the parent simulation object's current position as GPS coordinates.
  */
+@Getter
+@Setter
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class GpsSensor extends Sensor {
@@ -29,8 +33,7 @@ public class GpsSensor extends Sensor {
     }
 
     /**
-     * Returns the latest reading as a Position instance (longitude, latitude, altitude).
-     * Refreshes the reading by pulling the parent's current position.
+     * Returns the latest GPS position reading.
      */
     public Position getGpsPosition() {
         SimulationObject parent = getParent();
@@ -40,5 +43,3 @@ public class GpsSensor extends Sensor {
         return parent.getPosition().getValue();
     }
 }
-
-

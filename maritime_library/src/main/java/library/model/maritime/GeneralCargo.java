@@ -4,17 +4,22 @@ import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.NoUnit;
 import library.model.traffic.PossibleDomains;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * A ContainerShip Vessel holding attributes like containerCapacity, etc.
+ * A General Cargo Vessel.
  */
+@Getter
+@Setter
 @XmlRootElement
 public class GeneralCargo extends Vessel {
 
+    /** Maximum loading weight in tons */
     @XmlElement
     private SimulationProperty<Integer> maxLoadingWeight;
 
@@ -82,9 +87,4 @@ public class GeneralCargo extends Vessel {
               new SimulationProperty<>(library.model.simulation.units.AccelerationUnit.METERSPERSECONDSSQUARED, 0.0, "maxDeceleration"));
         this.maxLoadingWeight = maxLoadingWeight;
     }
-
-    public SimulationProperty<Integer> getMaxLoadingWeight() {
-        return maxLoadingWeight;
-    }
-
 }

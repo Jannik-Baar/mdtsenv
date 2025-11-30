@@ -5,7 +5,11 @@ import library.model.simulation.Behaviour;
 import library.model.simulation.Position;
 import library.model.simulation.objects.SimulationObject;
 import library.model.simulation.SimulationProperty;
+import library.model.traffic.Infrastructure;
+import library.model.traffic.Obstacle;
 import library.model.traffic.TrafficParticipant;
+import library.services.geodata.MapDataProvider;
+import org.locationtech.jts.io.ParseException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,6 +68,74 @@ public class SimpleFollowRouteBehaviour extends Behaviour {
                     System.out.println("// THE PARTICIPANT IS NAMED: " + ((Vessel) observedObject).getVesselName().getValue());
                     System.out.println("// THE PARTICIPANT IS AT: " + (observedObject.getPosition() != null ? observedObject.getPosition().getValue().toString(): null));
                     System.out.println("////////////////");
+                }
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // LOGGING TO DEMONSTRATE THAT THIS TRAFFIC PARTICIPANT CAN 'SEE' INFRASTRUCTURE //
+        ///////////////////////////////////////////////////////////////////////////////
+        if (this.trafficParticipant instanceof Vessel) {
+            Vessel vessel = (Vessel) this.trafficParticipant;
+            
+            // Get the MapDataProvider for this vessel
+            MapDataProvider mapDataProvider = MapDataProvider.getMap(vessel);
+            
+            if (mapDataProvider != null) {
+                Position currentPosition = vessel.getPosition().getValue();
+                
+                try {
+                    // Get all infrastructure at the current position
+                    List<Infrastructure> infrastructureAtPosition = mapDataProvider.getInfrastructureAtPosition(currentPosition);
+                    
+                    if (!infrastructureAtPosition.isEmpty()) {
+                        System.out.println("================");
+                        System.out.println("== " + vessel.getVesselName().getValue() + " : INFRASTRUCTURE DETECTED!");
+                        System.out.println("== Position: " + currentPosition.toString());
+                        System.out.println("== Found " + infrastructureAtPosition.size() + " infrastructure object(s):");
+                        
+                        for (Infrastructure infra : infrastructureAtPosition) {
+                            System.out.println("==   - Type: " + infra.getClass().getSimpleName());
+                            System.out.println("==     Position: " + infra.getPosition().getValue().toString());
+                        }
+                        System.out.println("================");
+                    }
+                } catch (ParseException e) {
+                    LOGGER.warning("Failed to get infrastructure at position: " + e.getMessage());
+                }
+            }
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // LOGGING TO DEMONSTRATE THAT THIS TRAFFIC PARTICIPANT CAN 'SEE' OBSTACLES //
+        ///////////////////////////////////////////////////////////////////////////////
+        if (this.trafficParticipant instanceof Vessel) {
+            Vessel vessel = (Vessel) this.trafficParticipant;
+            
+            // Get the MapDataProvider for this vessel
+            MapDataProvider mapDataProvider = MapDataProvider.getMap(vessel);
+            
+            if (mapDataProvider != null) {
+                Position currentPosition = vessel.getPosition().getValue();
+                
+                try {
+                    // Get all obstacles at the current position
+                    List<Obstacle> obstaclesAtPosition = mapDataProvider.getObstacleAtPosition(currentPosition, null);
+                    
+                    if (!obstaclesAtPosition.isEmpty()) {
+                        System.out.println("################");
+                        System.out.println("## " + vessel.getVesselName().getValue() + " : OBSTACLES DETECTED!");
+                        System.out.println("## Position: " + currentPosition.toString());
+                        System.out.println("## Found " + obstaclesAtPosition.size() + " obstacle(s):");
+                        
+                        for (Obstacle obstacle : obstaclesAtPosition) {
+                            System.out.println("##   - Type: " + obstacle.getClass().getSimpleName());
+                            System.out.println("##     Position: " + obstacle.getPosition().getValue().toString());
+                        }
+                        System.out.println("################");
+                    }
+                } catch (ParseException e) {
+                    LOGGER.warning("Failed to get obstacles at position: " + e.getMessage());
                 }
             }
         }

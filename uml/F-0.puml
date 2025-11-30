@@ -1,0 +1,28 @@
+@startuml
+
+package library.model.traffic {
+  class TrafficParticipant {
+    - width : SimulationProperty<Double>
+    - length : SimulationProperty<Double>
+    - speed : SimulationProperty<Double>
+    - inertia : SimulationProperty<Double>
+    - acceleration : SimulationProperty<Double>
+  }
+}
+
+package library.model.maritime {
+  class Vessel {
+    - draught : SimulationProperty<Double>
+    - freeboard : SimulationProperty<Double>
+    - turningCircle : SimulationProperty<Double>
+    - stoppingDistance : SimulationProperty<Double>
+    - accelerationDistance : SimulationProperty<Double>
+    - maxAcceleration : SimulationProperty<Double>
+    - maxDeceleration : SimulationProperty<Double>
+  }
+}
+
+' Beziehungen / Vererbung
+TrafficParticipant <|-r- Vessel
+
+@enduml

@@ -2,74 +2,72 @@ package library.model.maritime;
 
 import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 /**
- * Encapsulates AIS (Automatic Identification System) data received from a vessel.
- * Contains all relevant identification and navigational information transmitted by the vessel.
+ * Encapsulates AIS data received from a vessel.
  */
-@XmlRootElement
-@XmlAccessorType(XmlAccessType.FIELD)
+@Getter
+@Setter
 public class AisData implements Serializable {
 
-    @XmlElement
+    /** MMSI number */
     private String mmsi;
 
-    @XmlElement
+    /** IMO number */
     private String imo;
 
-    @XmlElement
+    /** Vessel name */
     private String vesselName;
 
-    @XmlElement
+    /** Callsign */
     private String callsign;
 
-    @XmlElement
+    /** Position of the vessel */
     private Position position;
 
-    @XmlElement
+    /** Latitude in degrees */
     private Double latitude;
 
-    @XmlElement
+    /** Longitude in degrees */
     private Double longitude;
 
-    @XmlElement
+    /** Speed over ground in knots */
     private Double speedOverGround;
 
-    @XmlElement
+    /** Course over ground in degrees */
     private Double courseOverGround;
 
-    @XmlElement
+    /** Heading in degrees */
     private Double heading;
 
-    @XmlElement
+    /** Length in meters */
     private Double length;
 
-    @XmlElement
+    /** Width in meters */
     private Double width;
 
-    @XmlElement
+    /** Draught in meters */
     private Double draught;
 
-    @XmlElement
+    /** Flag/nationality */
     private String flag;
 
-    @XmlElement
+    /** Timestamp of the AIS data */
     private long timestamp;
 
+    /**
+     * Default constructor.
+     */
     public AisData() {
         this.timestamp = System.currentTimeMillis();
     }
 
     /**
      * Creates AIS data from a Vessel's current state.
-     * 
-     * @param vessel The vessel to extract AIS data from
      */
     public AisData(Vessel vessel) {
         if (vessel == null) {
@@ -82,7 +80,6 @@ public class AisData implements Serializable {
         this.callsign = getPropertyValue(vessel.getCallsign());
         this.flag = getPropertyValue(vessel.getFlag());
 
-        // Position data
         if (vessel.getPosition() != null && vessel.getPosition().getValue() != null) {
             this.position = vessel.getPosition().getValue();
             if (position.getLatitude() != null) {
@@ -93,12 +90,10 @@ public class AisData implements Serializable {
             }
         }
 
-        // Speed and Course
         this.speedOverGround = getPropertyValue(vessel.getSpeed());
         this.courseOverGround = getPropertyValue(vessel.getCourse());
         this.heading = getPropertyValue(vessel.getRotation());
 
-        // Dimensions
         this.length = getPropertyValue(vessel.getLength());
         this.width = getPropertyValue(vessel.getWidth());
         this.draught = getPropertyValue(vessel.getDraught());
@@ -113,126 +108,6 @@ public class AisData implements Serializable {
         return (property != null) ? property.getValue() : null;
     }
 
-    public String getMmsi() {
-        return mmsi;
-    }
-
-    public void setMmsi(String mmsi) {
-        this.mmsi = mmsi;
-    }
-
-    public String getImo() {
-        return imo;
-    }
-
-    public void setImo(String imo) {
-        this.imo = imo;
-    }
-
-    public String getVesselName() {
-        return vesselName;
-    }
-
-    public void setVesselName(String vesselName) {
-        this.vesselName = vesselName;
-    }
-
-    public String getCallsign() {
-        return callsign;
-    }
-
-    public void setCallsign(String callsign) {
-        this.callsign = callsign;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    public Double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
-    }
-
-    public Double getSpeedOverGround() {
-        return speedOverGround;
-    }
-
-    public void setSpeedOverGround(Double speedOverGround) {
-        this.speedOverGround = speedOverGround;
-    }
-
-    public Double getCourseOverGround() {
-        return courseOverGround;
-    }
-
-    public void setCourseOverGround(Double courseOverGround) {
-        this.courseOverGround = courseOverGround;
-    }
-
-    public Double getHeading() {
-        return heading;
-    }
-
-    public void setHeading(Double heading) {
-        this.heading = heading;
-    }
-
-    public Double getLength() {
-        return length;
-    }
-
-    public void setLength(Double length) {
-        this.length = length;
-    }
-
-    public Double getWidth() {
-        return width;
-    }
-
-    public void setWidth(Double width) {
-        this.width = width;
-    }
-
-    public Double getDraught() {
-        return draught;
-    }
-
-    public void setDraught(Double draught) {
-        this.draught = draught;
-    }
-
-    public String getFlag() {
-        return flag;
-    }
-
-    public void setFlag(String flag) {
-        this.flag = flag;
-    }
-
-    public long getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
     @Override
     public String toString() {
         return "AisData{" +
@@ -245,4 +120,3 @@ public class AisData implements Serializable {
                 '}';
     }
 }
-

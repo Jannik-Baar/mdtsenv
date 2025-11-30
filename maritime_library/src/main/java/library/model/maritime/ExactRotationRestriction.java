@@ -6,6 +6,9 @@ import library.model.traffic.TrafficRestriction;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * A traffic restriction that requires vessels to maintain an exact rotation angle.
+ */
 @XmlRootElement
 public class ExactRotationRestriction extends TrafficRestriction<Double> {
 

@@ -10,6 +10,8 @@ import library.model.simulation.units.RotationUnit;
 import library.model.simulation.units.WeightUnit;
 import library.model.traffic.PossibleDomains;
 import library.model.traffic.TrafficParticipant;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,58 +21,80 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import java.util.Optional;
 
+/**
+ * Represents a vessel in the maritime simulation.
+ */
+@Getter
+@Setter
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Vessel extends TrafficParticipant {
 
+    /** The vessel's course in degrees */
     @XmlElement
     private SimulationProperty<Double> course;
 
+    /** The vessel's draught in meters */
     @XmlElement
     private SimulationProperty<Double> draught;
 
+    /** The vessel's home harbour */
     @XmlElement
     private SimulationProperty<String> homeHarbour;
 
+    /** The vessel's name */
     @XmlElement
     private SimulationProperty<String> vesselName;
 
+    /** The vessel's flag/nationality */
     @XmlElement
     private SimulationProperty<String> flag;
 
+    /** The vessel's IMO number */
     @XmlElement
     private SimulationProperty<String> imo;
 
+    /** The vessel's MMSI number */
     @XmlElement
     private SimulationProperty<String> mmsi;
 
+    /** The vessel's callsign */
     @XmlElement
     private SimulationProperty<String> callsign;
 
+    /** The vessel's load capacity in tons */
     @XmlElement
     private SimulationProperty<Double> loadCapacity;
 
+    /** The vessel's freeboard in meters */
     @XmlElement
     private SimulationProperty<Double> freeboard;
 
+    /** The vessel's turning circle in meters */
     @XmlElement
     private SimulationProperty<Double> turningCircle;
 
+    /** The vessel's stopping distance in meters */
     @XmlElement
     private SimulationProperty<Double> stoppingDistance;
 
+    /** The vessel's acceleration distance in meters */
     @XmlElement
     private SimulationProperty<Double> accelerationDistance;
 
+    /** The vessel's maximum acceleration in m/s² */
     @XmlElement
     private SimulationProperty<Double> maxAcceleration;
 
+    /** The vessel's maximum deceleration in m/s² */
     @XmlElement
     private SimulationProperty<Double> maxDeceleration;
 
+    /** The vessel's GPS sensor */
     @XmlTransient
     private GpsSensor gpsSensor;
 
+    /** The vessel's AIS sensor */
     @XmlTransient
     private AisSensor aisSensor;
 
@@ -185,126 +209,9 @@ public class Vessel extends TrafficParticipant {
         this.maxDeceleration = maxDeceleration;
     }
 
-    public SimulationProperty<Double> getFreeboard() {
-        return freeboard;
-    }
-
-    public void setFreeboard(SimulationProperty<Double> freeboard) {
-        this.freeboard = freeboard;
-    }
-
-    public SimulationProperty<Double> getCourse() {
-        return course;
-    }
-
-    public SimulationProperty<Double> getDraught() {
-        return draught;
-    }
-
-    public SimulationProperty<String> getHomeHarbour() {
-        return homeHarbour;
-    }
-
-    public SimulationProperty<String> getVesselName() {
-        return vesselName;
-    }
-
-    public SimulationProperty<String> getFlag() {
-        return flag;
-    }
-
-    public SimulationProperty<String> getImo() {
-        return imo;
-    }
-
-    public SimulationProperty<String> getMmsi() {
-        return mmsi;
-    }
-
-    public SimulationProperty<String> getCallsign() {
-        return callsign;
-    }
-
-    public SimulationProperty<Double> getLoadCapacity() {
-        return loadCapacity;
-    }
-
-    public void setCourse(SimulationProperty<Double> course) {
-        this.course = course;
-    }
-
-    public void setDraught(SimulationProperty<Double> draught) {
-        this.draught = draught;
-    }
-
-    public void setHomeHarbour(SimulationProperty<String> homeHarbour) {
-        this.homeHarbour = homeHarbour;
-    }
-
-    public void setVesselName(SimulationProperty<String> vesselName) {
-        this.vesselName = vesselName;
-    }
-
-    public void setFlag(SimulationProperty<String> flag) {
-        this.flag = flag;
-    }
-
-    public void setImo(SimulationProperty<String> imo) {
-        this.imo = imo;
-    }
-
-    public void setMmsi(SimulationProperty<String> mmsi) {
-        this.mmsi = mmsi;
-    }
-
-    public void setCallsign(SimulationProperty<String> callsign) {
-        this.callsign = callsign;
-    }
-
-    public void setLoadCapacity(SimulationProperty<Double> loadCapacity) {
-        this.loadCapacity = loadCapacity;
-    }
-
-    public SimulationProperty<Double> getTurningCircle() {
-        return turningCircle;
-    }
-
-    public void setTurningCircle(SimulationProperty<Double> turningCircle) {
-        this.turningCircle = turningCircle;
-    }
-
-    public SimulationProperty<Double> getStoppingDistance() {
-        return stoppingDistance;
-    }
-
-    public void setStoppingDistance(SimulationProperty<Double> stoppingDistance) {
-        this.stoppingDistance = stoppingDistance;
-    }
-
-    public SimulationProperty<Double> getAccelerationDistance() {
-        return accelerationDistance;
-    }
-
-    public void setAccelerationDistance(SimulationProperty<Double> accelerationDistance) {
-        this.accelerationDistance = accelerationDistance;
-    }
-
-    public SimulationProperty<Double> getMaxAcceleration() {
-        return maxAcceleration;
-    }
-
-    public void setMaxAcceleration(SimulationProperty<Double> maxAcceleration) {
-        this.maxAcceleration = maxAcceleration;
-    }
-
-    public SimulationProperty<Double> getMaxDeceleration() {
-        return maxDeceleration;
-    }
-
-    public void setMaxDeceleration(SimulationProperty<Double> maxDeceleration) {
-        this.maxDeceleration = maxDeceleration;
-    }
-
+    /**
+     * Gets the GPS sensor attached to this vessel.
+     */
     public GpsSensor getGpsSensor() {
         if (gpsSensor == null) {
             gpsSensor = findComponent(GpsSensor.class).orElse(null);
@@ -312,6 +219,9 @@ public class Vessel extends TrafficParticipant {
         return gpsSensor;
     }
 
+    /**
+     * Sets the GPS sensor for this vessel.
+     */
     public void setGpsSensor(GpsSensor gpsSensor) {
         this.getComponents().removeIf(c -> c instanceof GpsSensor);
         this.gpsSensor = gpsSensor;
@@ -320,6 +230,9 @@ public class Vessel extends TrafficParticipant {
         }
     }
 
+    /**
+     * Gets the AIS sensor attached to this vessel.
+     */
     public AisSensor getAisSensor() {
         if (aisSensor == null) {
             aisSensor = findComponent(AisSensor.class).orElse(null);
@@ -327,6 +240,9 @@ public class Vessel extends TrafficParticipant {
         return aisSensor;
     }
 
+    /**
+     * Sets the AIS sensor for this vessel.
+     */
     public void setAisSensor(AisSensor aisSensor) {
         this.getComponents().removeIf(c -> c instanceof AisSensor);
         this.aisSensor = aisSensor;
@@ -335,6 +251,9 @@ public class Vessel extends TrafficParticipant {
         }
     }
     
+    /**
+     * Attaches a sensor component to this vessel.
+     */
     private void attachSensor(SimulationComponent component, String componentName) {
         if (component == null) {
             throw new IllegalArgumentException(componentName + " must not be null");
@@ -346,6 +265,9 @@ public class Vessel extends TrafficParticipant {
         }
     }
 
+    /**
+     * Finds a component of the specified type.
+     */
     private <T> Optional<T> findComponent(Class<T> componentType) {
         return this.getComponents()
                 .stream()

@@ -1,0 +1,29 @@
+@startuml
+
+package library.model.simulation {
+  abstract class Behaviour {
+    - goals : List<Goal>
+    - isSystemUnderTest : boolean
+    + nextStep(timePassed : double) : Map<String, Object> {abstract}
+  }
+}
+
+package library.model.maritime.behaviours {
+  class AccelerationBehaviour {
+    - vessel : Vessel
+    - targetSpeed : double
+    + nextStep(timePassed : double) : HashMap<String, Object>
+  }
+
+  class DecelerationBehaviour {
+    - vessel : Vessel
+    - targetSpeed : double
+    + nextStep(timePassed : double) : HashMap<String, Object>
+  }
+}
+
+' Beziehungen
+Behaviour <|-- AccelerationBehaviour
+Behaviour <|-- DecelerationBehaviour
+
+@enduml

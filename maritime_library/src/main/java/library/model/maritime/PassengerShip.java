@@ -4,14 +4,22 @@ import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.NoUnit;
 import library.model.traffic.PossibleDomains;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * A Passenger Ship Vessel.
+ */
+@Getter
+@Setter
 @XmlRootElement
 public class PassengerShip extends Vessel {
 
+    /** Maximum passenger capacity */
     @XmlElement
     private SimulationProperty<Integer> passengerCapacity;
 
@@ -61,9 +69,5 @@ public class PassengerShip extends Vessel {
               new SimulationProperty<>(library.model.simulation.units.AccelerationUnit.METERSPERSECONDSSQUARED, 0.0, "maxAcceleration"),
               new SimulationProperty<>(library.model.simulation.units.AccelerationUnit.METERSPERSECONDSSQUARED, 0.0, "maxDeceleration"));
         this.passengerCapacity = passengerCapacity;
-    }
-
-    public SimulationProperty<Integer> getPassengerCapacity() {
-        return passengerCapacity;
     }
 }

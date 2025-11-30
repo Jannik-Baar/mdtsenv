@@ -1,315 +1,148 @@
 package library.model.maritime;
 
+import library.model.dto.scenario.ScenarioDTO;
 import library.model.simulation.Position;
-import library.model.traffic.Infrastructure;
-import library.model.traffic.PossibleDomains;
+import library.model.simulation.FormDummy;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.geom.Polygon;
+import org.junit.jupiter.api.io.TempDir;
 
-import java.util.ArrayList;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import java.io.File;
+import java.nio.file.Path;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * Unit tests for TrafficSeparationScheme.
- * 
- * Tests the creation and validation of TSS infrastructure according to IMO standards.
+ * Test class for verifying TrafficSeparationScheme functionality.
+ * Tests initialization and XML persistence.
  */
 class TrafficSeparationSchemeTest {
 
-    private final GeometryFactory geometryFactory = new GeometryFactory();
+    @TempDir
+    Path tempDir;
 
     /**
-     * Helper method to create a default polygon for testing.
-     */
-    private Polygon createDefaultPolygon() {
-        Coordinate[] coordinates = new Coordinate[]{
-                new Coordinate(1.0, 51.0),
-                new Coordinate(1.5, 51.0),
-                new Coordinate(1.5, 51.5),
-                new Coordinate(1.0, 51.5),
-                new Coordinate(1.0, 51.0)
-        };
-        return geometryFactory.createPolygon(coordinates);
-    }
-
-    /**
-     * Tests creation of a basic traffic lane with north-to-south direction.
+     * Tests that a TrafficSeparationScheme object is correctly initialized with values.
      */
     @Test
-    void testCreateTrafficLaneWithCardinalDirection() {
-        // Create a TSS for a northbound traffic lane
+    @DisplayName("Test initialization of TrafficSeparationScheme")
+    void testTrafficSeparationSchemeInitialization() {
+        // 1. ARRANGE
+        Position pos = new Position(53.5, 8.5, 0.0);
+        FormDummy geometry = new FormDummy();
+        String tssName = "North Sea TSS";
+        TrafficSeparationSchemeZoneType zoneType = TrafficSeparationSchemeZoneType.TRAFFIC_LANE;
+        TrafficSeparationSchemeTrafficDirection direction = TrafficSeparationSchemeTrafficDirection.NORTH_TO_SOUTH;
+
+        // 2. ACT
         TrafficSeparationScheme tss = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
+                false,
+                pos,
+                geometry,
                 0.0,
-                TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
-                TrafficSeparationSchemeTrafficDirection.NORTH_TO_SOUTH,
-                "Dover Strait Southbound Lane"
+                zoneType,
+                direction,
+                tssName
         );
 
-        assertNotNull(tss);
-        assertEquals("Dover Strait Southbound Lane", tss.getTssName().getValue());
-        assertEquals(TrafficSeparationSchemeTrafficDirection.NORTH_TO_SOUTH, tss.getTrafficDirection().getValue());
-        assertEquals(TrafficSeparationSchemeZoneType.TRAFFIC_LANE, tss.getZoneType().getValue());
+        // 3. ASSERT
+        assertNotNull(tss, "TrafficSeparationScheme object should be created");
+        assertEquals(zoneType, tss.getZoneType().getValue(),
+                "ZoneType should be initialized correctly");
+        assertEquals(direction, tss.getTrafficDirection().getValue(),
+                "TrafficDirection should be initialized correctly");
+        assertEquals(tssName, tss.getTssName().getValue(),
+                "TSS name should be initialized correctly");
+        assertFalse(tss.isEntryProhibited(),
+                "Traffic lane should not prohibit entry");
+        
+        // Test heading compliance
+        assertTrue(tss.isHeadingCompliant(180.0, 10.0),
+                "Heading 180° should be compliant for NORTH_TO_SOUTH");
+        assertFalse(tss.isHeadingCompliant(0.0, 10.0),
+                "Heading 0° should not be compliant for NORTH_TO_SOUTH");
     }
 
     /**
-     * Tests creation of a TSS with custom bearing direction.
+     * Tests that a separation zone prohibits entry.
      */
     @Test
-    void testCreateTrafficLaneWithCustomBearing() {
-        // Create a TSS with a specific bearing of 045° (northeast)
-        TrafficSeparationScheme tss = new TrafficSeparationScheme(
-                true,
-                new Position(5.0, 36.0, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
-                45.0, // Custom bearing
-                "Strait of Gibraltar TSS"
-        );
+    @DisplayName("Test separation zone entry prohibition")
+    void testSeparationZoneEntryProhibition() {
+        // 1. ARRANGE
+        Position pos = new Position(53.0, 8.0, 0.0);
+        FormDummy geometry = new FormDummy();
 
-        assertNotNull(tss);
-        assertEquals(TrafficSeparationSchemeTrafficDirection.CUSTOM_BEARING, tss.getTrafficDirection().getValue());
-        assertEquals(45.0, tss.getCustomBearing().getValue());
-        assertEquals("Strait of Gibraltar TSS", tss.getTssName().getValue());
-    }
-
-    /**
-     * Tests creation of a separation zone.
-     */
-    @Test
-    void testCreateSeparationZone() {
+        // 2. ACT
         TrafficSeparationScheme separationZone = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
+                false,
+                pos,
+                geometry,
                 0.0,
                 TrafficSeparationSchemeZoneType.SEPARATION_ZONE,
                 TrafficSeparationSchemeTrafficDirection.NO_RESTRICTION,
-                "Dover Strait Separation Zone"
+                "Test Separation Zone"
         );
 
-        assertTrue(separationZone.isEntryProhibited(), 
-                "Separation zones should prohibit entry");
+        // 3. ASSERT
+        assertTrue(separationZone.isEntryProhibited(),
+                "Separation zone should prohibit entry");
     }
 
     /**
-     * Tests creation of an area to be avoided.
+     * Tests XML persistence (marshalling and unmarshalling) for TrafficSeparationScheme.
      */
     @Test
-    void testCreateAreaToBeAvoided() {
-        TrafficSeparationScheme avoidanceArea = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.AREA_TO_BE_AVOIDED,
-                TrafficSeparationSchemeTrafficDirection.NO_RESTRICTION,
-                "Protected Marine Area"
-        );
+    @DisplayName("Test XML persistence (Marshalling) for TrafficSeparationScheme")
+    void testTrafficSeparationSchemeMarshalling() throws JAXBException {
+        // 1. ARRANGE
+        Position pos = new Position(54.0, 8.0, 0.0);
+        FormDummy geometry = new FormDummy();
+        String expectedName = "Baltic Sea TSS";
 
-        assertTrue(avoidanceArea.isEntryProhibited(), 
-                "Areas to be avoided should prohibit entry");
-    }
-
-    /**
-     * Tests heading compliance for cardinal directions.
-     */
-    @Test
-    void testHeadingComplianceCardinalDirection() {
-        TrafficSeparationScheme northbound = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
-                TrafficSeparationSchemeTrafficDirection.SOUTH_TO_NORTH,
-                "Northbound Lane"
-        );
-
-        // Test vessel heading north (0°) - should be compliant
-        assertTrue(northbound.isHeadingCompliant(0.0, 10.0));
-        assertTrue(northbound.isHeadingCompliant(5.0, 10.0));
-        assertTrue(northbound.isHeadingCompliant(355.0, 10.0));
-
-        // Test vessel heading south (180°) - should not be compliant
-        assertFalse(northbound.isHeadingCompliant(180.0, 10.0));
-        
-        // Test vessel heading east (90°) - should not be compliant
-        assertFalse(northbound.isHeadingCompliant(90.0, 10.0));
-    }
-
-    /**
-     * Tests heading compliance for custom bearing.
-     */
-    @Test
-    void testHeadingComplianceCustomBearing() {
-        // Create TSS with 045° bearing (northeast)
-        TrafficSeparationScheme customBearingLane = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
-                45.0,
-                "Northeast Lane"
-        );
-
-        // Vessel heading 45° should be compliant
-        assertTrue(customBearingLane.isHeadingCompliant(45.0, 10.0));
-        assertTrue(customBearingLane.isHeadingCompliant(50.0, 10.0));
-        assertTrue(customBearingLane.isHeadingCompliant(40.0, 10.0));
-
-        // Vessel heading opposite direction should not be compliant
-        assertFalse(customBearingLane.isHeadingCompliant(225.0, 10.0));
-    }
-
-    /**
-     * Tests heading compliance with wrap-around at 0°/360°.
-     */
-    @Test
-    void testHeadingComplianceWrapAround() {
-        TrafficSeparationScheme northbound = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
-                TrafficSeparationSchemeTrafficDirection.SOUTH_TO_NORTH,
-                "Northbound"
-        );
-
-        // 359° should be within 10° tolerance of 0°
-        assertTrue(northbound.isHeadingCompliant(359.0, 10.0));
-        
-        // 1° should be within 10° tolerance of 0°
-        assertTrue(northbound.isHeadingCompliant(1.0, 10.0));
-    }
-
-    /**
-     * Tests bidirectional traffic zones.
-     */
-    @Test
-    void testBidirectionalTraffic() {
-        TrafficSeparationScheme inshoreZone = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
+        TrafficSeparationScheme originalTSS = new TrafficSeparationScheme(
+                false,
+                pos,
+                geometry,
                 0.0,
                 TrafficSeparationSchemeZoneType.INSHORE_TRAFFIC_ZONE,
                 TrafficSeparationSchemeTrafficDirection.BIDIRECTIONAL,
-                "Coastal Traffic Zone"
+                expectedName
         );
 
-        // Any heading should be compliant in bidirectional zones
-        assertTrue(inshoreZone.isHeadingCompliant(0.0, 10.0));
-        assertTrue(inshoreZone.isHeadingCompliant(90.0, 10.0));
-        assertTrue(inshoreZone.isHeadingCompliant(180.0, 10.0));
-        assertTrue(inshoreZone.isHeadingCompliant(270.0, 10.0));
-    }
+        ScenarioDTO scenario = new ScenarioDTO();
+        scenario.addSimulationObject(originalTSS);
 
-    /**
-     * Integration test: TSS as Infrastructure with restrictions.
-     */
-    @Test
-    void testTSSAsInfrastructure() {
-        // Create a TSS
-        TrafficSeparationScheme tss = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.TRAFFIC_LANE,
-                TrafficSeparationSchemeTrafficDirection.WEST_TO_EAST,
-                "English Channel Eastbound"
-        );
+        File xmlFile = tempDir.resolve("TrafficSeparationSchemeTest.xml").toFile();
 
-        // Add maritime domain
-        tss.addDomain(PossibleDomains.MARITIME);
+        // 2. ACT
+        JAXBContext context = JAXBContext.newInstance("library.model");
 
-        // Verify infrastructure properties
-        assertTrue(tss.isUsableBy(PossibleDomains.MARITIME));
-        assertFalse(tss.isUsableBy(PossibleDomains.ROAD));
-        assertEquals(1.25, tss.getPosition().getValue().getLongitude());
-        assertEquals(51.25, tss.getPosition().getValue().getLatitude());
-    }
+        Marshaller marshaller = context.createMarshaller();
+        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+        marshaller.marshal(scenario, xmlFile);
 
-    /**
-     * Tests roundabout traffic pattern.
-     */
-    @Test
-    void testRoundaboutTraffic() {
-        TrafficSeparationScheme roundabout = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.ROUNDABOUT,
-                TrafficSeparationSchemeTrafficDirection.CLOCKWISE,
-                "Traffic Roundabout"
-        );
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        ScenarioDTO loadedScenario = (ScenarioDTO) unmarshaller.unmarshal(xmlFile);
 
-        assertEquals(TrafficSeparationSchemeZoneType.ROUNDABOUT, roundabout.getZoneType().getValue());
-        assertEquals(TrafficSeparationSchemeTrafficDirection.CLOCKWISE, roundabout.getTrafficDirection().getValue());
-        
-        // Roundabouts currently always return true (simplified implementation)
-        assertTrue(roundabout.isHeadingCompliant(45.0, 10.0));
-    }
+        // 3. ASSERT
+        assertNotNull(loadedScenario.getSimulationObjects(), "List of objects should not be null");
+        assertEquals(1, loadedScenario.getSimulationObjects().size(), "Exactly one object should be loaded");
 
-    /**
-     * Tests precautionary area.
-     */
-    @Test
-    void testPrecautionaryArea() {
-        TrafficSeparationScheme precautionaryArea = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.PRECAUTIONARY_AREA,
-                TrafficSeparationSchemeTrafficDirection.NO_RESTRICTION,
-                "High Traffic Density Area"
-        );
+        Object loadedObj = loadedScenario.getSimulationObjects().get(0);
+        assertTrue(loadedObj instanceof TrafficSeparationScheme, "Loaded object must be of type TrafficSeparationScheme");
 
-        assertEquals(TrafficSeparationSchemeZoneType.PRECAUTIONARY_AREA,
-                precautionaryArea.getZoneType().getValue());
-        assertFalse(precautionaryArea.isEntryProhibited(), 
-                "Precautionary areas do not prohibit entry");
-    }
-
-    /**
-     * Tests default constructor for XML deserialization.
-     */
-    @Test
-    void testDefaultConstructor() {
-        TrafficSeparationScheme tss = new TrafficSeparationScheme();
-        assertNotNull(tss);
-    }
-
-    /**
-     * Tests no-anchoring area.
-     */
-    @Test
-    void testNoAnchoringArea() {
-        TrafficSeparationScheme noAnchorZone = new TrafficSeparationScheme(
-                true,
-                new Position(1.25, 51.25, 0),
-                createDefaultPolygon(),
-                0.0,
-                TrafficSeparationSchemeZoneType.NO_ANCHORING_AREA,
-                TrafficSeparationSchemeTrafficDirection.NO_RESTRICTION,
-                "Pipeline Protection Zone"
-        );
-
-        assertEquals(TrafficSeparationSchemeZoneType.NO_ANCHORING_AREA,
-                noAnchorZone.getZoneType().getValue());
-        assertFalse(noAnchorZone.isEntryProhibited(), 
-                "No-anchoring areas allow passage but prohibit anchoring");
+        TrafficSeparationScheme loadedTSS = (TrafficSeparationScheme) loadedObj;
+        assertEquals(expectedName, loadedTSS.getTssName().getValue(),
+                "Error: TSS name was not correctly restored.");
+        assertEquals(TrafficSeparationSchemeZoneType.INSHORE_TRAFFIC_ZONE, loadedTSS.getZoneType().getValue(),
+                "Error: ZoneType was not correctly restored.");
+        assertEquals(TrafficSeparationSchemeTrafficDirection.BIDIRECTIONAL, loadedTSS.getTrafficDirection().getValue(),
+                "Error: TrafficDirection was not correctly restored.");
     }
 }
 

@@ -4,6 +4,8 @@ import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.traffic.Infrastructure;
 import library.model.traffic.PossibleDomains;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -11,25 +13,35 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 
+/**
+ * Represents a maritime navigation channel that provides a defined waterway for vessel traffic.
+ */
+@Getter
+@Setter
 @XmlRootElement
 public class Channel extends Infrastructure {
     
+    /** List of beacons in this channel */
     @XmlElementWrapper(name = "beacons")
     @XmlElement(name = "beacon")
     private ArrayList<Beacon> beacons = new ArrayList<>();
     
+    /** List of lateral marks in this channel */
     @XmlElementWrapper(name = "lateralMarks")
     @XmlElement(name = "lateralMark")
     private ArrayList<LateralMark> lateralMarks = new ArrayList<>();
     
+    /** List of lighthouses in this channel */
     @XmlElementWrapper(name = "lighthouses")
     @XmlElement(name = "lighthouse")
     private ArrayList<Lighthouse> lighthouses = new ArrayList<>();
     
+    /** List of safe water marks in this channel */
     @XmlElementWrapper(name = "safeWaterMarks")
     @XmlElement(name = "safeWaterMark")
     private ArrayList<SafeWaterMark> safeWaterMarks = new ArrayList<>();
     
+    /** Whether this is a preferred channel */
     @XmlElement
     private SimulationProperty<Boolean> preferred;
     
@@ -67,65 +79,4 @@ public class Channel extends Infrastructure {
         this.lighthouses = new ArrayList<>();
         this.safeWaterMarks = new ArrayList<>();
     }
-    
-    public ArrayList<Beacon> getBeacons() {
-        return beacons;
-    }
-    
-    public void setBeacons(ArrayList<Beacon> beacons) {
-        this.beacons = beacons;
-    }
-    
-    public Channel addBeacon(Beacon beacon) {
-        this.beacons.add(beacon);
-        return this;
-    }
-    
-    public ArrayList<LateralMark> getLateralMarks() {
-        return lateralMarks;
-    }
-    
-    public void setLateralMarks(ArrayList<LateralMark> lateralMarks) {
-        this.lateralMarks = lateralMarks;
-    }
-    
-    public Channel addLateralMark(LateralMark lateralMark) {
-        this.lateralMarks.add(lateralMark);
-        return this;
-    }
-    
-    public ArrayList<Lighthouse> getLighthouses() {
-        return lighthouses;
-    }
-    
-    public void setLighthouses(ArrayList<Lighthouse> lighthouses) {
-        this.lighthouses = lighthouses;
-    }
-    
-    public Channel addLighthouse(Lighthouse lighthouse) {
-        this.lighthouses.add(lighthouse);
-        return this;
-    }
-    
-    public ArrayList<SafeWaterMark> getSafeWaterMarks() {
-        return safeWaterMarks;
-    }
-    
-    public void setSafeWaterMarks(ArrayList<SafeWaterMark> safeWaterMarks) {
-        this.safeWaterMarks = safeWaterMarks;
-    }
-    
-    public Channel addSafeWaterMark(SafeWaterMark safeWaterMark) {
-        this.safeWaterMarks.add(safeWaterMark);
-        return this;
-    }
-    
-    public SimulationProperty<Boolean> getPreferred() {
-        return preferred;
-    }
-    
-    public void setPreferred(SimulationProperty<Boolean> preferred) {
-        this.preferred = preferred;
-    }
 }
-

@@ -4,19 +4,22 @@ import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.NoUnit;
 import library.model.traffic.Obstacle;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Represents a Beacon (Bake/Molenfeuer) - Requirement F-3.9.
- * <p>
- * A Beacon is a fixed aid to navigation (AtoN). Unlike buoys, beacons rely on a fixed foundation.
- * They can function as Lateral, Cardinal, Leading Lines, or other marks.
- * </p>
+ * Represents a Beacon
  */
+@Getter
+@Setter
 @XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Beacon extends Obstacle {
 
     /**
@@ -62,22 +65,9 @@ public class Beacon extends Obstacle {
         super();
     }
 
-    /**
-     * Creates a new Beacon.
-     *
-     * @param nameStr     The identifier of the beacon.
-     * @param position    The fixed geographic position.
-     * @param geometry    The physical geometry/collision body.
-     * @param beaconType  The functional type (e.g. LATERAL_PORT).
-     * @param shape       The physical structure (e.g. TOWER).
-     * @param color       The color/pattern of the structure.
-     * @param region      The IALA region.
-     * @param lightSignal The light signal (optional).
-     */
     public Beacon(String nameStr, Position position, Geometry geometry,
                   BeaconType beaconType, BeaconShape shape, BeaconColor color,
                   Region region, LightSignal lightSignal) {
-        // Beacons are fixed obstacles (isStatic = true)
         super(true, position, geometry, 0.0);
 
         this.name = new SimulationProperty<>(false, false, NoUnit.get(), nameStr, "name");
@@ -85,56 +75,6 @@ public class Beacon extends Obstacle {
         this.shape = new SimulationProperty<>(false, false, NoUnit.get(), shape, "shape");
         this.color = new SimulationProperty<>(false, false, NoUnit.get(), color, "color");
         this.region = new SimulationProperty<>(false, false, NoUnit.get(), region, "region");
-        this.lightSignal = lightSignal;
-    }
-
-    // Getters and Setters
-
-    public SimulationProperty<String> getName() {
-        return name;
-    }
-
-    public void setName(SimulationProperty<String> name) {
-        this.name = name;
-    }
-
-    public SimulationProperty<BeaconType> getBeaconType() {
-        return beaconType;
-    }
-
-    public void setBeaconType(SimulationProperty<BeaconType> beaconType) {
-        this.beaconType = beaconType;
-    }
-
-    public SimulationProperty<BeaconShape> getShape() {
-        return shape;
-    }
-
-    public void setShape(SimulationProperty<BeaconShape> shape) {
-        this.shape = shape;
-    }
-
-    public SimulationProperty<BeaconColor> getColor() {
-        return color;
-    }
-
-    public void setColor(SimulationProperty<BeaconColor> color) {
-        this.color = color;
-    }
-
-    public SimulationProperty<Region> getRegion() {
-        return region;
-    }
-
-    public void setRegion(SimulationProperty<Region> region) {
-        this.region = region;
-    }
-
-    public LightSignal getLightSignal() {
-        return lightSignal;
-    }
-
-    public void setLightSignal(LightSignal lightSignal) {
         this.lightSignal = lightSignal;
     }
 }

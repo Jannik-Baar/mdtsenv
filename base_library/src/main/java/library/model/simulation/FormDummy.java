@@ -43,22 +43,22 @@ public class FormDummy extends Geometry {
 
     @Override
     public String getGeometryType() {
-        return null;
+        return "Point";
     }
 
     @Override
     public Coordinate getCoordinate() {
-        return null;
+        return new Coordinate(0.0, 0.0);
     }
 
     @Override
     public Coordinate[] getCoordinates() {
-        return new Coordinate[0];
+        return new Coordinate[]{new Coordinate(0.0, 0.0)};
     }
 
     @Override
     public int getNumPoints() {
-        return 0;
+        return 1;
     }
 
     @Override
@@ -123,7 +123,8 @@ public class FormDummy extends Geometry {
 
     @Override
     protected Envelope computeEnvelopeInternal() {
-        return null;
+        // Return an empty envelope at coordinate (0,0) to avoid NullPointerException
+        return new Envelope(0.0, 0.0, 0.0, 0.0);
     }
 
     @Override

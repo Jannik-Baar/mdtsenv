@@ -10,13 +10,13 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 @XmlEnum
 public enum BeaconShape {
-    POLE,           // Pfahl / Stange (oft im Watt oder flachen Wasser)
-    PERCH,          // Pricke (Baumstamm/Ast, oft unbeleuchtet)
-    PILE,           // Dalben (Gruppe von Pfählen)
-    LATTICE,        // Gittermast (typisch für Molenfeuer oder Richtfeuer)
-    TOWER,          // Massiver Turm (Stein, Beton, Metall)
-    CAIRN,          // Steinhaufen / Steinbake
-    PANEL,          // Tafel (oft bei Richtfeuern verwendet)
-    STRUCTURE,      // Sonstiges massives Bauwerk
-    STAKE           // Kleiner Pfosten
+    POLE,
+    PERCH,
+    PILE,
+    LATTICE,
+    TOWER,
+    CAIRN,
+    PANEL,
+    STRUCTURE,
+    STAKE
 }

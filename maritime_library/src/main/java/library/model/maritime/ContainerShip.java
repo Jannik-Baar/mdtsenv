@@ -4,20 +4,26 @@ import library.model.simulation.Position;
 import library.model.simulation.SimulationProperty;
 import library.model.simulation.units.NoUnit;
 import library.model.traffic.PossibleDomains;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * A ContainerShip Vessel holding attributes like containerCapacity, etc.
+ * A Container Ship Vessel.
  */
+@Getter
+@Setter
 @XmlRootElement
 public class ContainerShip extends Vessel {
 
+    /** Container capacity in TEU */
     @XmlElement
     private SimulationProperty<Integer> containerCapacity;
 
+    /** Whether an emergency has been declared */
     @XmlElement
     private SimulationProperty<Boolean> emergencyDeclared;
 
@@ -84,13 +90,4 @@ public class ContainerShip extends Vessel {
         this.emergencyDeclared = new SimulationProperty<>(true, false, NoUnit.get(), false, "emergencyDeclared");
 
     }
-
-    public SimulationProperty<Integer> getContainerCapacity() {
-        return containerCapacity;
-    }
-
-    public SimulationProperty<Boolean> getEmergencyDeclared() {
-        return emergencyDeclared;
-    }
-
 }

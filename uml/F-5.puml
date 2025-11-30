@@ -23,7 +23,7 @@ package library.model.maritime {
 }
 
 ' Beziehungen
-Constraint <|-- TrafficConstraint
+Constraint <|-r- TrafficConstraint
 
 TrafficConstraint <|-- MaxWidthConstraint
 TrafficConstraint <|-- MaxDraughtConstraint

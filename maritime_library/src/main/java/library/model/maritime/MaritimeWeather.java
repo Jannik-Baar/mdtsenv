@@ -8,26 +8,38 @@ import library.model.simulation.units.RotationUnit;
 import library.model.simulation.units.SpeedUnit;
 import library.model.simulation.units.VolumeUnit;
 import library.model.traffic.Weather;
+import lombok.Getter;
+import lombok.Setter;
 import org.locationtech.jts.geom.Geometry;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Maritime weather conditions.
+ */
+@Getter
+@Setter
 @XmlRootElement
 public class MaritimeWeather extends Weather {
 
+    /** Wind strength in knots */
     @XmlElement
     private SimulationProperty<Double> windStrength;
 
+    /** Wind direction in degrees */
     @XmlElement
     private SimulationProperty<Double> windDirection;
 
+    /** Precipitation amount in liters */
     @XmlElement
     private SimulationProperty<Double> precipitationAmount;
 
+    /** Air pressure in pascals */
     @XmlElement
     private SimulationProperty<Double> airPressure;
 
+    /** Whether there is a thunderstorm */
     @XmlElement
     private SimulationProperty<Boolean> thunderStorm;
 
@@ -71,25 +83,5 @@ public class MaritimeWeather extends Weather {
         this.precipitationAmount = precipitationAmount;
         this.airPressure = airPressure;
         this.thunderStorm = thunderStorm;
-    }
-
-    public SimulationProperty<Double> getWindStrength() {
-        return windStrength;
-    }
-
-    public SimulationProperty<Double> getWindDirection() {
-        return windDirection;
-    }
-
-    public SimulationProperty<Double> getPrecipitationAmount() {
-        return precipitationAmount;
-    }
-
-    public SimulationProperty<Double> getAirPressure() {
-        return airPressure;
-    }
-
-    public SimulationProperty<Boolean> getThunderStorm() {
-        return thunderStorm;
     }
 }

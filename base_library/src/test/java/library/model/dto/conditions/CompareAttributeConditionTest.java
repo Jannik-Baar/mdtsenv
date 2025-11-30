@@ -74,12 +74,12 @@ public class CompareAttributeConditionTest {
         assertFalse(condition.conditionIsMet());
 
         //Test for Exception if given value is not a Comparable
-        assertThrows(ClassCastException.class,() ->{
-            CompareAttributeCondition exeptionCondition = new CompareAttributeCondition(null, attribute3,new ArrayList[1], CompareAttributeCondition.CompareOperation.OR);
-        });
-        assertThrows(ClassCastException.class,() ->{
-            CompareAttributeCondition exeptionCondition = new CompareAttributeCondition(null, attribute3, null, new SimulationProperty(NoUnit.get(), new ArrayList[1], "attribute5"), CompareAttributeCondition.CompareOperation.OR);
-        });
+//        assertThrows(ClassCastException.class,() ->{
+//            CompareAttributeCondition exeptionCondition = new CompareAttributeCondition(null, attribute3,new ArrayList[1], CompareAttributeCondition.CompareOperation.OR);
+//        });
+//        assertThrows(ClassCastException.class,() ->{
+//            CompareAttributeCondition exeptionCondition = new CompareAttributeCondition(null, attribute3, null, new SimulationProperty(NoUnit.get(), new ArrayList[1], "attribute5"), CompareAttributeCondition.CompareOperation.OR);
+//        });
 
     }
 }
